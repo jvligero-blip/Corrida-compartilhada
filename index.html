@@ -9,88 +9,113 @@ body{background:#0A0F1E;color:#F0F4FF;font-family:'DM Sans',sans-serif;min-heigh
   --bg:#0A0F1E;--card:#111827;--accent:#00E5A0;--adim:#00E5A018;--asoft:#00E5A00C;
   --text:#F0F4FF;--muted:#6B7A99;--border:#1E2D45;--yellow:#FFD166;--blue:#4B9EFF;--bdim:#4B9EFF18;
 }
-header{background:#0D1428;border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:62px;position:sticky;top:0;z-index:50;}
+header{background:#0D1428;border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:58px;position:sticky;top:0;z-index:50;}
 .logo{display:flex;align-items:center;gap:9px;font-size:20px;font-weight:800;letter-spacing:-0.5px;}
-.logo-mark{width:33px;height:33px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:15px;}
-nav{display:flex;gap:4px;}
-.nav-btn{padding:7px 16px;border-radius:10px;border:none;cursor:pointer;font-size:14px;font-weight:700;font-family:inherit;transition:all 0.15s;}
+.logo-mark{width:32px;height:32px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:14px;}
+nav{display:flex;gap:3px;}
+.nav-btn{padding:6px 14px;border-radius:10px;border:none;cursor:pointer;font-size:13px;font-weight:700;font-family:inherit;transition:all 0.15s;}
 .nav-btn.active{background:var(--accent);color:#0A0F1E;}
 .nav-btn.inactive{background:transparent;color:var(--muted);}
-.live-badge{background:var(--adim);color:var(--accent);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;}
-main{max-width:1080px;margin:0 auto;padding:32px 20px;}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px;}
-.stat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;}
-.stat-num{font-size:32px;font-weight:800;color:var(--accent);letter-spacing:-1px;}
-.stat-label{font-size:13px;color:var(--muted);margin-top:2px;}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
-.section-title{font-size:22px;font-weight:800;letter-spacing:-0.5px;margin-bottom:3px;}
-.section-sub{color:var(--muted);font-size:13px;margin-bottom:18px;}
-.cards-col{display:flex;flex-direction:column;gap:12px;}
-.card{border-radius:16px;padding:18px;cursor:pointer;position:relative;transition:all 0.2s;border:1.5px solid var(--border);background:var(--card);}
+.live-badge{background:var(--adim);color:var(--accent);padding:4px 11px;border-radius:20px;font-size:11px;font-weight:700;}
+main{max-width:1100px;margin:0 auto;padding:24px 18px;}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:14px 16px;}
+.stat-num{font-size:28px;font-weight:800;color:var(--accent);letter-spacing:-1px;}
+.stat-label{font-size:12px;color:var(--muted);margin-top:2px;}
+/* Layout com mapa */
+.main-layout{display:grid;grid-template-columns:1fr 420px;gap:20px;}
+.left-col{display:flex;flex-direction:column;gap:16px;}
+/* Map */
+.map-container{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;position:relative;}
+.map-header{padding:14px 16px 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.map-title{font-weight:700;font-size:14px;}
+.map-legend{display:flex;gap:12px;font-size:11px;color:var(--muted);}
+.legend-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;}
+canvas{display:block;width:100%;cursor:default;}
+.map-overlay{position:absolute;bottom:12px;right:12px;background:rgba(10,15,30,0.85);border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-size:11px;color:var(--muted);}
+/* Cols */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.section-title{font-size:18px;font-weight:800;letter-spacing:-0.5px;margin-bottom:3px;}
+.section-sub{color:var(--muted);font-size:12px;margin-bottom:14px;}
+.cards-col{display:flex;flex-direction:column;gap:10px;}
+.card{border-radius:14px;padding:14px;cursor:pointer;position:relative;transition:all 0.2s;border:1.5px solid var(--border);background:var(--card);}
 .card:hover{border-color:#2E3D55;}
 .card.sel-driver{background:linear-gradient(135deg,#0D2A1F,#111827);border-color:var(--accent);transform:scale(1.01);}
 .card.sel-passenger{background:linear-gradient(135deg,#0D1A2E,#111827);border-color:var(--blue);transform:scale(1.01);}
-.check{position:absolute;top:11px;right:11px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;}
-.card-head{display:flex;gap:11px;align-items:center;margin-bottom:9px;}
-.avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#0A0F1E;flex-shrink:0;}
-.name{font-weight:700;font-size:14px;}
+.check{position:absolute;top:10px;right:10px;width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;}
+.card-head{display:flex;gap:10px;align-items:center;margin-bottom:8px;}
+.avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#0A0F1E;flex-shrink:0;}
+.name{font-weight:700;font-size:13px;}
 .sub{font-size:11px;color:var(--muted);}
-.rating{color:var(--yellow);font-weight:700;font-size:12px;margin-left:auto;}
-.route{font-size:13px;color:var(--muted);margin-bottom:9px;}
+.rating{color:var(--yellow);font-weight:700;font-size:11px;margin-left:auto;}
+.route-txt{font-size:12px;color:var(--muted);margin-bottom:8px;}
 .card-foot{display:flex;justify-content:space-between;align-items:center;}
-.tags{display:flex;gap:5px;}
-.pill{padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;background:var(--asoft);color:var(--accent);border:1px solid #00E5A030;}
-.price{font-weight:800;font-size:16px;color:var(--accent);}
-.card-meta{margin-top:7px;font-size:11px;color:var(--muted);}
-.cta-box{border-radius:16px;padding:18px;transition:all 0.3s;border:1.5px solid var(--border);background:var(--card);}
+.tags{display:flex;gap:4px;flex-wrap:wrap;}
+.pill{padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;background:var(--asoft);color:var(--accent);border:1px solid #00E5A025;}
+.price{font-weight:800;font-size:15px;color:var(--accent);}
+.card-meta{margin-top:6px;font-size:10px;color:var(--muted);}
+/* Right col */
+.right-col{display:flex;flex-direction:column;gap:14px;}
+.cta-box{border-radius:16px;padding:16px;transition:all 0.3s;border:1.5px solid var(--border);background:var(--card);}
 .cta-box.ready{background:linear-gradient(135deg,var(--adim),var(--bdim));border-color:var(--accent);}
 .cta-label{font-size:13px;font-weight:600;color:var(--muted);}
 .cta-label.ready{color:var(--text);}
-.cta-names{font-size:12px;color:var(--muted);margin-top:6px;margin-bottom:12px;}
-.match-btn{width:100%;padding:13px;border-radius:11px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:15px;background:var(--accent);color:#0A0F1E;transition:all 0.2s;margin-top:12px;}
+.cta-names{font-size:12px;color:var(--muted);margin-top:6px;margin-bottom:10px;}
+.match-btn{width:100%;padding:12px;border-radius:11px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:14px;background:var(--accent);color:#0A0F1E;transition:all 0.2s;margin-top:10px;}
 .match-btn:disabled{opacity:0.4;cursor:not-allowed;}
-.match-btn:not(:disabled){margin-top:0;}
+.match-btn:not(:disabled){margin-top:8px;}
 /* History */
-.hist-item{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:12px;margin-bottom:12px;}
-.hist-num{font-weight:800;font-size:20px;color:var(--accent);width:28px;flex-shrink:0;}
+.hist-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:11px;margin-bottom:10px;}
+.hist-num{font-weight:800;font-size:18px;color:var(--accent);width:26px;flex-shrink:0;}
 .hist-info{flex:1;}
-.hist-name{font-weight:700;font-size:14px;}
+.hist-name{font-weight:700;font-size:13px;}
 .hist-sub{font-size:11px;color:var(--muted);}
-.hist-sep{font-size:18px;color:var(--border);}
-.hist-price{text-align:right;margin-right:8px;}
-.hist-price-val{font-weight:800;color:var(--accent);font-size:15px;}
-.hist-price-sub{font-size:11px;color:var(--muted);}
-.confirmed{background:var(--adim);color:var(--accent);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;flex-shrink:0;}
+.hist-sep{font-size:16px;color:var(--border);}
+.hist-price{text-align:right;margin-right:6px;}
+.hist-price-val{font-weight:800;color:var(--accent);font-size:14px;}
+.hist-price-sub{font-size:10px;color:var(--muted);}
+.confirmed{background:var(--adim);color:var(--accent);padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;flex-shrink:0;}
 /* Modal */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:999;padding:20px;}
-.modal{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:30px;max-width:440px;width:100%;}
-.modal-emoji{text-align:center;font-size:50px;margin-bottom:6px;}
-.modal-title{text-align:center;font-size:21px;font-weight:800;letter-spacing:-0.5px;}
-.modal-sub{text-align:center;color:var(--muted);font-size:13px;margin-top:4px;margin-bottom:22px;}
-.modal-row{display:flex;gap:12px;align-items:center;margin-bottom:10px;}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:28px;max-width:820px;width:100%;display:grid;grid-template-columns:1fr 340px;gap:24px;}
+.modal-left{}
+.modal-emoji{font-size:44px;margin-bottom:6px;}
+.modal-title{font-size:20px;font-weight:800;letter-spacing:-0.5px;}
+.modal-sub{color:var(--muted);font-size:13px;margin-top:4px;margin-bottom:18px;}
+.modal-row{display:flex;gap:11px;align-items:center;margin-bottom:9px;}
 .modal-info{flex:1;}
-.modal-badge{padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;}
+.modal-badge{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;}
 .badge-green{background:var(--adim);color:var(--accent);}
 .badge-blue{background:var(--bdim);color:var(--blue);}
-.modal-route{padding-left:20px;margin-bottom:12px;font-size:13px;color:var(--muted);}
-.divider{height:1px;background:var(--border);margin:14px 0;}
-.modal-stats{display:flex;justify-content:space-between;margin-bottom:18px;}
+.modal-route-txt{padding-left:18px;margin-bottom:10px;font-size:12px;color:var(--muted);}
+.divider{height:1px;background:var(--border);margin:12px 0;}
+.modal-stats{display:flex;justify-content:space-between;margin-bottom:14px;}
 .modal-stat-label{font-size:11px;color:var(--muted);}
-.modal-stat-val{font-weight:700;font-size:14px;}
-.modal-btn-primary{width:100%;padding:13px;border-radius:11px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:15px;background:var(--accent);color:#0A0F1E;}
-.cost-box{background:var(--bg);border-radius:14px;padding:18px;margin-bottom:14px;}
-.cost-row{display:flex;justify-content:space-between;margin-bottom:10px;}
-.cost-label{color:var(--muted);font-size:14px;}
-.cost-val{font-weight:700;}
-.cost-split{display:flex;justify-content:space-between;margin-bottom:8px;}
-.split-label{font-weight:600;font-size:14px;}
-.split-val-green{font-weight:800;color:var(--accent);font-size:17px;}
-.split-val-yellow{font-weight:800;color:var(--yellow);font-size:17px;}
-.pix-note{background:var(--asoft);border:1px solid #00E5A030;border-radius:12px;padding:11px 15px;margin-bottom:18px;font-size:13px;color:var(--accent);}
-.btn-row{display:flex;gap:10px;}
-.btn-outline{flex:1;padding:12px;border-radius:11px;border:1px solid var(--accent);cursor:pointer;font-family:inherit;font-weight:700;background:transparent;color:var(--accent);}
-.btn-confirm{flex:2;padding:12px;border-radius:11px;border:none;cursor:pointer;font-family:inherit;font-weight:700;background:var(--accent);color:#0A0F1E;}
-.empty{color:var(--muted);font-size:14px;margin-top:8px;}
+.modal-stat-val{font-weight:700;font-size:13px;}
+.modal-btn-primary{width:100%;padding:12px;border-radius:11px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:14px;background:var(--accent);color:#0A0F1E;}
+.modal-right{display:flex;flex-direction:column;}
+.modal-map-wrap{background:var(--bg);border-radius:14px;overflow:hidden;flex:1;min-height:260px;position:relative;border:1px solid var(--border);}
+.cost-box{background:var(--bg);border-radius:13px;padding:16px;margin-bottom:12px;}
+.cost-row{display:flex;justify-content:space-between;margin-bottom:9px;}
+.cost-label{color:var(--muted);font-size:13px;}
+.cost-val{font-weight:700;font-size:13px;}
+.cost-split{display:flex;justify-content:space-between;margin-bottom:7px;}
+.split-label{font-weight:600;font-size:13px;}
+.split-val-green{font-weight:800;color:var(--accent);font-size:16px;}
+.split-val-yellow{font-weight:800;color:var(--yellow);font-size:16px;}
+.pix-note{background:var(--asoft);border:1px solid #00E5A025;border-radius:11px;padding:10px 14px;margin-bottom:15px;font-size:12px;color:var(--accent);}
+.btn-row{display:flex;gap:8px;}
+.btn-outline{flex:1;padding:11px;border-radius:11px;border:1px solid var(--accent);cursor:pointer;font-family:inherit;font-weight:700;font-size:13px;background:transparent;color:var(--accent);}
+.btn-confirm{flex:2;padding:11px;border-radius:11px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:13px;background:var(--accent);color:#0A0F1E;}
+/* route info panel */
+.route-info-panel{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px 16px;}
+.route-panel-title{font-weight:700;font-size:13px;margin-bottom:10px;color:var(--muted);}
+.route-stop{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;}
+.route-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.route-line{width:2px;height:20px;background:var(--border);margin:2px 0 2px 4px;}
+.route-stop-label{font-size:12px;font-weight:600;}
+.route-stop-sub{font-size:11px;color:var(--muted);}
+.no-route{font-size:12px;color:var(--muted);text-align:center;padding:16px;}
 </style>
 </head>
 <body>
@@ -116,21 +141,46 @@ main{max-width:1080px;margin:0 auto;padding:32px 20px;}
       <div class="stat-card"><div class="stat-num" id="match-count">0</div><div class="stat-label">Matches hoje</div></div>
     </div>
 
-    <div class="cols">
-      <!-- Drivers -->
-      <div>
-        <div class="section-title">🧑‍✈️ Motoristas</div>
-        <div class="section-sub">Selecione um motorista disponível</div>
-        <div class="cards-col" id="drivers-col"></div>
+    <div class="main-layout">
+      <!-- LEFT: map + cards -->
+      <div class="left-col">
+        <!-- MAP -->
+        <div class="map-container">
+          <div class="map-header">
+            <div class="map-title">🗺️ Mapa de Rotas — São Paulo</div>
+            <div class="map-legend">
+              <span><span class="legend-dot" style="background:#00E5A0;"></span>Motorista</span>
+              <span><span class="legend-dot" style="background:#4B9EFF;"></span>Passageiro</span>
+              <span><span class="legend-dot" style="background:#FFD166;"></span>Destino</span>
+            </div>
+          </div>
+          <canvas id="map-canvas" width="620" height="300"></canvas>
+          <div class="map-overlay" id="map-info">Selecione um motorista para ver a rota</div>
+        </div>
+
+        <div class="cols">
+          <div>
+            <div class="section-title">🧑‍✈️ Motoristas</div>
+            <div class="section-sub">Selecione um motorista disponível</div>
+            <div class="cards-col" id="drivers-col"></div>
+          </div>
+          <div>
+            <div class="section-title">👤 Passageiros</div>
+            <div class="section-sub">Selecione um passageiro</div>
+            <div class="cards-col" id="passengers-col"></div>
+          </div>
+        </div>
       </div>
 
-      <!-- Passengers + CTA -->
-      <div>
-        <div class="section-title">👤 Passageiros</div>
-        <div class="section-sub">Selecione um passageiro para o match</div>
-        <div class="cards-col" id="passengers-col"></div>
+      <!-- RIGHT: route panel + CTA -->
+      <div class="right-col">
+        <div class="route-info-panel" id="route-panel">
+          <div class="route-panel-title">📍 Detalhes da Rota</div>
+          <div class="no-route" id="no-route-msg">Selecione um motorista para<br>ver os detalhes da rota</div>
+          <div id="route-stops" style="display:none;"></div>
+        </div>
 
-        <div class="cta-box" id="cta-box" style="margin-top:18px;">
+        <div class="cta-box" id="cta-box">
           <div class="cta-label" id="cta-label">Selecione motorista e passageiro</div>
           <div class="cta-names" id="cta-names" style="display:none;"></div>
           <button class="match-btn" id="match-btn" disabled onclick="doMatch()">🔗 Fazer Match Agora</button>
@@ -142,7 +192,7 @@ main{max-width:1080px;margin:0 auto;padding:32px 20px;}
   <!-- HISTORY TAB -->
   <div id="tab-historico" style="display:none;">
     <div class="section-title">📋 Histórico de Matches</div>
-    <div id="hist-sub" class="section-sub" style="margin-bottom:24px;">Nenhum match realizado ainda. Vá para a aba Match para começar!</div>
+    <div id="hist-sub" class="section-sub" style="margin-bottom:20px;">Nenhum match realizado ainda.</div>
     <div id="hist-list"></div>
   </div>
 </main>
@@ -150,53 +200,76 @@ main{max-width:1080px;margin:0 auto;padding:32px 20px;}
 <!-- Modal -->
 <div class="overlay" id="modal" style="display:none;" onclick="closeModal()">
   <div class="modal" onclick="event.stopPropagation()">
-    <div id="modal-step1">
-      <div class="modal-emoji">🎉</div>
-      <div class="modal-title">Match realizado!</div>
-      <div class="modal-sub">Motorista e passageiro conectados com sucesso</div>
-      <div class="modal-row">
-        <div class="avatar" id="m-d-av" style="background:linear-gradient(135deg,#00E5A0,#006644)"></div>
-        <div class="modal-info"><div class="name" id="m-d-name"></div><div class="sub" id="m-d-car"></div></div>
-        <span class="modal-badge badge-green">Motorista</span>
-      </div>
-      <div class="modal-route" id="m-d-route"></div>
-      <div class="modal-row">
-        <div class="avatar" id="m-p-av" style="background:linear-gradient(135deg,#4B9EFF,#004499)"></div>
-        <div class="modal-info"><div class="name" id="m-p-name"></div><div class="sub" id="m-p-route"></div></div>
-        <span class="modal-badge badge-blue">Passageiro</span>
-      </div>
-      <div class="divider"></div>
-      <div class="modal-stats">
-        <div><div class="modal-stat-label">Saída</div><div class="modal-stat-val" id="m-time"></div></div>
-        <div><div class="modal-stat-label">Distância</div><div class="modal-stat-val" id="m-dist"></div></div>
-        <div><div class="modal-stat-label">Vagas</div><div class="modal-stat-val" id="m-seats"></div></div>
-      </div>
-      <button class="modal-btn-primary" onclick="showStep2()">Ver divisão de custos →</button>
-    </div>
-    <div id="modal-step2" style="display:none;">
-      <div style="font-size:20px;font-weight:800;letter-spacing:-0.5px;margin-bottom:4px;">💸 Divisão de custos</div>
-      <div style="color:var(--muted);font-size:13px;margin-bottom:20px;">Rateio transparente e automático</div>
-      <div class="cost-box">
-        <div class="cost-row"><span class="cost-label">Custo total da corrida</span><span class="cost-val" id="m-total"></span></div>
-        <div class="cost-row" style="margin-bottom:0"><span class="cost-label">Número de pessoas</span><span class="cost-val">2 pessoas</span></div>
+    <!-- Step 1 -->
+    <div id="modal-step1" style="grid-column:1/-1;display:grid;grid-template-columns:1fr 340px;gap:24px;">
+      <div>
+        <div class="modal-emoji">🎉</div>
+        <div class="modal-title">Match realizado!</div>
+        <div class="modal-sub">Motorista e passageiro conectados com sucesso</div>
+        <div class="modal-row">
+          <div class="avatar" id="m-d-av" style="background:linear-gradient(135deg,#00E5A0,#006644)"></div>
+          <div class="modal-info"><div class="name" id="m-d-name"></div><div class="sub" id="m-d-car"></div></div>
+          <span class="modal-badge badge-green">Motorista</span>
+        </div>
+        <div class="modal-route-txt" id="m-d-route"></div>
+        <div class="modal-row">
+          <div class="avatar" id="m-p-av" style="background:linear-gradient(135deg,#4B9EFF,#004499)"></div>
+          <div class="modal-info"><div class="name" id="m-p-name"></div><div class="sub" id="m-p-route"></div></div>
+          <span class="modal-badge badge-blue">Passageiro</span>
+        </div>
         <div class="divider"></div>
-        <div class="cost-split"><span class="split-label" id="m-d-split-label"></span><span class="split-val-green" id="m-split"></span></div>
-        <div class="cost-split" style="margin-bottom:0"><span class="split-label" id="m-p-split-label"></span><span class="split-val-yellow" id="m-split2"></span></div>
+        <div class="modal-stats">
+          <div><div class="modal-stat-label">Saída</div><div class="modal-stat-val" id="m-time"></div></div>
+          <div><div class="modal-stat-label">Distância</div><div class="modal-stat-val" id="m-dist"></div></div>
+          <div><div class="modal-stat-label">Vagas</div><div class="modal-stat-val" id="m-seats"></div></div>
+          <div><div class="modal-stat-label">Valor total</div><div class="modal-stat-val" id="m-price-tot"></div></div>
+        </div>
+        <button class="modal-btn-primary" onclick="showStep2()">Ver divisão de custos →</button>
       </div>
-      <div class="pix-note">✅ Pagamento via Pix processado automaticamente após a corrida</div>
-      <div class="btn-row">
-        <button class="btn-outline" onclick="showStep1()">← Voltar</button>
-        <button class="btn-confirm" onclick="closeModal()">Confirmar corrida ✓</button>
+      <div class="modal-right">
+        <div style="font-weight:700;font-size:13px;margin-bottom:8px;color:var(--muted);">🗺️ Rota da corrida</div>
+        <div class="modal-map-wrap">
+          <canvas id="modal-map" width="320" height="260"></canvas>
+        </div>
+      </div>
+    </div>
+    <!-- Step 2 -->
+    <div id="modal-step2" style="grid-column:1/-1;display:none;grid-template-columns:1fr 340px;gap:24px;">
+      <div>
+        <div style="font-size:20px;font-weight:800;letter-spacing:-0.5px;margin-bottom:4px;">💸 Divisão de custos</div>
+        <div style="color:var(--muted);font-size:13px;margin-bottom:18px;">Rateio transparente e automático</div>
+        <div class="cost-box">
+          <div class="cost-row"><span class="cost-label">Custo total da corrida</span><span class="cost-val" id="m-total"></span></div>
+          <div class="cost-row" style="margin-bottom:0"><span class="cost-label">Número de pessoas</span><span class="cost-val">2 pessoas</span></div>
+          <div class="divider"></div>
+          <div class="cost-split"><span class="split-label" id="m-d-split-label"></span><span class="split-val-green" id="m-split"></span></div>
+          <div class="cost-split" style="margin-bottom:0"><span class="split-label" id="m-p-split-label"></span><span class="split-val-yellow" id="m-split2"></span></div>
+        </div>
+        <div class="pix-note">✅ Pagamento via Pix processado automaticamente após a corrida</div>
+        <div class="btn-row">
+          <button class="btn-outline" onclick="showStep1m()">← Voltar</button>
+          <button class="btn-confirm" onclick="closeModal()">Confirmar corrida ✓</button>
+        </div>
+      </div>
+      <div class="modal-right">
+        <div style="font-weight:700;font-size:13px;margin-bottom:8px;color:var(--muted);">🗺️ Rota da corrida</div>
+        <div class="modal-map-wrap">
+          <canvas id="modal-map2" width="320" height="260"></canvas>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <script>
+// --- DATA ---
 const drivers = [
-  {id:1,name:"Carlos Silva",avatar:"CS",rating:4.9,car:"Honda Civic Prata",plate:"BRA-2E19",seats:3,route:"Vila Madalena → Paulista",time:"08:15",price:12.5,distance:"6,2 km",tags:["Silencioso","A/C"]},
-  {id:2,name:"Fernanda Lima",avatar:"FL",rating:4.7,car:"Toyota Corolla Branco",plate:"ABC-1D23",seats:2,route:"Pinheiros → Faria Lima",time:"08:30",price:9.0,distance:"4,8 km",tags:["Música","Pet OK"]},
-  {id:3,name:"Rafael Costa",avatar:"RC",rating:5.0,car:"VW Polo Preto",plate:"DEF-3F45",seats:4,route:"Butantã → República",time:"07:50",price:15.0,distance:"9,1 km",tags:["Rápido","Silencioso"]},
+  {id:1,name:"Carlos Silva",avatar:"CS",rating:4.9,car:"Honda Civic Prata",plate:"BRA-2E19",seats:3,route:"Vila Madalena → Paulista",time:"08:15",price:12.5,distance:"6,2 km",tags:["Silencioso","A/C"],
+   stops:[{label:"Vila Madalena",sub:"Saída do motorista",x:0.18,y:0.62,color:"#00E5A0"},{label:"Ana Paula",sub:"Embarque passageiro",x:0.25,y:0.55,color:"#4B9EFF"},{label:"Av. Paulista",sub:"Destino final",x:0.52,y:0.38,color:"#FFD166"}]},
+  {id:2,name:"Fernanda Lima",avatar:"FL",rating:4.7,car:"Toyota Corolla Branco",plate:"ABC-1D23",seats:2,route:"Pinheiros → Faria Lima",time:"08:30",price:9.0,distance:"4,8 km",tags:["Música","Pet OK"],
+   stops:[{label:"Pinheiros",sub:"Saída do motorista",x:0.22,y:0.48,color:"#00E5A0"},{label:"Bruno Souza",sub:"Embarque passageiro",x:0.28,y:0.44,color:"#4B9EFF"},{label:"Faria Lima",sub:"Destino final",x:0.42,y:0.36,color:"#FFD166"}]},
+  {id:3,name:"Rafael Costa",avatar:"RC",rating:5.0,car:"VW Polo Preto",plate:"DEF-3F45",seats:4,route:"Butantã → República",time:"07:50",price:15.0,distance:"9,1 km",tags:["Rápido","Silencioso"],
+   stops:[{label:"Butantã",sub:"Saída do motorista",x:0.08,y:0.52,color:"#00E5A0"},{label:"Camila Torres",sub:"Embarque passageiro",x:0.15,y:0.48,color:"#4B9EFF"},{label:"República",sub:"Destino final",x:0.68,y:0.28,color:"#FFD166"}]},
 ];
 const passengers = [
   {id:1,name:"Ana Paula",avatar:"AP",rating:4.8,from:"Vila Madalena",to:"Av. Paulista",time:"08:00"},
@@ -204,8 +277,137 @@ const passengers = [
   {id:3,name:"Camila Torres",avatar:"CT",rating:4.9,from:"Butantã",to:"Centro",time:"07:45"},
 ];
 
-let selD=null, selP=null, matchHistory=[];
+let selD=null, selP=null, matchHistory=[], currentMatchData=null;
 
+// --- MAP DRAWING ---
+function drawMap(canvasId, driver, highlight) {
+  const canvas = document.getElementById(canvasId);
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0,0,W,H);
+
+  // Background
+  ctx.fillStyle = '#0A0F1E';
+  ctx.fillRect(0,0,W,H);
+
+  // Grid lines (street feel)
+  ctx.strokeStyle = '#1E2D45';
+  ctx.lineWidth = 1;
+  for(let x=0;x<W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+
+  // Street blocks (decorative)
+  const blocks = [
+    {x:0.3,y:0.2,w:0.15,h:0.12},{x:0.55,y:0.15,w:0.12,h:0.1},
+    {x:0.1,y:0.35,w:0.1,h:0.15},{x:0.45,y:0.55,w:0.14,h:0.1},
+    {x:0.7,y:0.45,w:0.12,h:0.14},{x:0.2,y:0.7,w:0.18,h:0.1},
+    {x:0.6,y:0.65,w:0.1,h:0.12},{x:0.78,y:0.2,w:0.1,h:0.18},
+  ];
+  blocks.forEach(b=>{
+    ctx.fillStyle='#111827';
+    ctx.strokeStyle='#1E2D45';
+    ctx.lineWidth=1;
+    ctx.beginPath();
+    ctx.roundRect(b.x*W, b.y*H, b.w*W, b.h*H, 4);
+    ctx.fill();ctx.stroke();
+  });
+
+  // Main roads
+  const roads = [
+    [{x:0,y:0.4},{x:1,y:0.4}],
+    [{x:0,y:0.65},{x:1,y:0.65}],
+    [{x:0.35,y:0},{x:0.35,y:1}],
+    [{x:0.65,y:0},{x:0.65,y:1}],
+    [{x:0,y:0.25},{x:0.4,y:0.25},{x:0.7,y:0.5},{x:1,y:0.5}],
+  ];
+  roads.forEach(pts=>{
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x*W, pts[0].y*H);
+    for(let i=1;i<pts.length;i++) ctx.lineTo(pts[i].x*W, pts[i].y*H);
+    ctx.strokeStyle='#1A2840';ctx.lineWidth=8;ctx.stroke();
+    ctx.strokeStyle='#1E2D45';ctx.lineWidth=6;ctx.stroke();
+  });
+
+  if(!driver) {
+    // No selection: show ghost markers for all drivers
+    drivers.forEach(d=>{
+      const s = d.stops[0];
+      drawGhostMarker(ctx, s.x*W, s.y*H, d.avatar);
+    });
+    return;
+  }
+
+  const stops = driver.stops;
+
+  // Draw route path with glow
+  ctx.beginPath();
+  ctx.moveTo(stops[0].x*W, stops[0].y*H);
+  // Curved path through stops
+  for(let i=1;i<stops.length;i++){
+    const prev=stops[i-1], curr=stops[i];
+    const cpx=(prev.x+curr.x)/2*W;
+    const cpy=(prev.y+curr.y)/2*H - 20;
+    ctx.quadraticCurveTo(cpx,cpy,curr.x*W,curr.y*H);
+  }
+  // Glow
+  ctx.shadowColor=stops[0].color;ctx.shadowBlur=16;
+  ctx.strokeStyle=stops[0].color+'55';ctx.lineWidth=10;ctx.stroke();
+  ctx.shadowBlur=0;
+  // Main line
+  const grad=ctx.createLinearGradient(stops[0].x*W,stops[0].y*H,stops[stops.length-1].x*W,stops[stops.length-1].y*H);
+  grad.addColorStop(0,'#00E5A0');grad.addColorStop(0.5,'#4B9EFF');grad.addColorStop(1,'#FFD166');
+  ctx.strokeStyle=grad;ctx.lineWidth=3;ctx.setLineDash([]);ctx.stroke();
+
+  // Animated dashes
+  ctx.setLineDash([6,8]);
+  ctx.strokeStyle='rgba(255,255,255,0.15)';ctx.lineWidth=2;ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Direction arrow in middle
+  const mid = stops[Math.floor(stops.length/2)];
+  const prev2 = stops[Math.floor(stops.length/2)-1]||stops[0];
+  const angle = Math.atan2(mid.y-prev2.y, mid.x-prev2.x);
+  const mx=(mid.x+prev2.x)/2*W, my=(mid.y+prev2.y)/2*H;
+  ctx.save();ctx.translate(mx,my);ctx.rotate(angle);
+  ctx.fillStyle='rgba(255,255,255,0.5)';
+  ctx.beginPath();ctx.moveTo(8,0);ctx.lineTo(-4,-4);ctx.lineTo(-4,4);ctx.closePath();ctx.fill();
+  ctx.restore();
+
+  // Draw stops
+  stops.forEach((s,i)=>{
+    const x=s.x*W, y=s.y*H;
+    // Shadow
+    ctx.shadowColor=s.color;ctx.shadowBlur=20;
+    ctx.beginPath();ctx.arc(x,y,14,0,Math.PI*2);
+    ctx.fillStyle=s.color+'22';ctx.fill();
+    ctx.shadowBlur=0;
+    // Ring
+    ctx.beginPath();ctx.arc(x,y,10,0,Math.PI*2);
+    ctx.fillStyle='#111827';ctx.fill();
+    ctx.strokeStyle=s.color;ctx.lineWidth=2.5;ctx.stroke();
+    // Icon
+    ctx.fillStyle=s.color;ctx.font='bold 10px DM Sans';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(i===0?'A':i===1?'B':'★',x,y);
+    // Label bubble
+    const lx=x+(x>W*0.6?-1:1)*14, ly=y-22;
+    const label=s.label, lw=ctx.measureText(label).width+16;
+    ctx.fillStyle='rgba(10,15,30,0.92)';ctx.strokeStyle=s.color+'66';ctx.lineWidth=1;
+    ctx.beginPath();ctx.roundRect(lx-lw/2,ly-10,lw,20,5);ctx.fill();ctx.stroke();
+    ctx.fillStyle=s.color;ctx.font='bold 9px DM Sans';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(label,lx,ly);
+  });
+}
+
+function drawGhostMarker(ctx,x,y,label){
+  ctx.beginPath();ctx.arc(x,y,10,0,Math.PI*2);
+  ctx.fillStyle='#1E2D45';ctx.fill();
+  ctx.strokeStyle='#2E3D55';ctx.lineWidth=1.5;ctx.stroke();
+  ctx.fillStyle='#6B7A99';ctx.font='bold 9px DM Sans';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText(label,x,y);
+}
+
+// --- RENDER ---
 function renderDrivers(){
   const col=document.getElementById('drivers-col');
   col.innerHTML=drivers.map(d=>`
@@ -216,7 +418,7 @@ function renderDrivers(){
         <div><div class="name">${d.name}</div><div class="sub">${d.car}</div></div>
         <div class="rating">★ ${d.rating}</div>
       </div>
-      <div class="route">📍 ${d.route}</div>
+      <div class="route-txt">📍 ${d.route}</div>
       <div class="card-foot">
         <div class="tags">${d.tags.map(t=>`<span class="pill">${t}</span>`).join('')}</div>
         <div class="price">R$ ${d.price.toFixed(2)}</div>
@@ -236,8 +438,30 @@ function renderPassengers(){
         <div><div class="name">${p.name}</div><div class="sub">Passageiro verificado</div></div>
         <div class="rating">★ ${p.rating}</div>
       </div>
-      <div class="route">📍 ${p.from} → ${p.to}</div>
-      <div class="card-meta">🕐 Horário desejado: ${p.time}</div>
+      <div class="route-txt">📍 ${p.from} → ${p.to}</div>
+      <div class="card-meta">🕐 ${p.time}</div>
+    </div>
+  `).join('');
+}
+
+function renderRoutePanel(driver){
+  const panel=document.getElementById('no-route-msg');
+  const stops=document.getElementById('route-stops');
+  if(!driver){panel.style.display='block';stops.style.display='none';return;}
+  panel.style.display='none';
+  stops.style.display='block';
+  stops.innerHTML=driver.stops.map((s,i)=>`
+    <div>
+      <div class="route-stop">
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="route-dot" style="background:${s.color};box-shadow:0 0 8px ${s.color}66;"></div>
+          ${i<driver.stops.length-1?`<div class="route-line"></div>`:''}
+        </div>
+        <div>
+          <div class="route-stop-label" style="color:${s.color}">${s.label}</div>
+          <div class="route-stop-sub">${s.sub}</div>
+        </div>
+      </div>
     </div>
   `).join('');
 }
@@ -260,21 +484,41 @@ function updateCTA(){
   } else {
     label.textContent='Selecione motorista e passageiro';
     names.style.display='none';
-    btn.style.marginTop='12px';
+    btn.style.marginTop='10px';
   }
   btn.disabled=!can;
 }
 
-function selectDriver(id){selD=selD===id?null:id;renderDrivers();updateCTA();}
-function selectPassenger(id){selP=selP===id?null:id;renderPassengers();updateCTA();}
+function updateMapInfo(driver){
+  const info=document.getElementById('map-info');
+  if(!driver){info.textContent='Selecione um motorista para ver a rota';return;}
+  info.textContent=`${driver.route} · ${driver.distance}`;
+}
+
+function selectDriver(id){
+  selD=selD===id?null:id;
+  const driver=selD?drivers.find(d=>d.id===selD):null;
+  renderDrivers();
+  renderRoutePanel(driver);
+  updateMapInfo(driver);
+  drawMap('map-canvas',driver);
+  updateCTA();
+}
+
+function selectPassenger(id){
+  selP=selP===id?null:id;
+  renderPassengers();
+  updateCTA();
+}
 
 function doMatch(){
   if(!selD||!selP)return;
   const d=drivers.find(x=>x.id===selD);
   const p=passengers.find(x=>x.id===selP);
+  currentMatchData={d,p};
   matchHistory.unshift({d,p,id:Date.now()});
   document.getElementById('match-count').textContent=matchHistory.length;
-  // fill modal
+  // Fill modal
   document.getElementById('m-d-av').textContent=d.avatar;
   document.getElementById('m-d-name').textContent=d.name;
   document.getElementById('m-d-car').textContent=d.car+' · '+d.plate;
@@ -285,32 +529,36 @@ function doMatch(){
   document.getElementById('m-time').textContent=d.time;
   document.getElementById('m-dist').textContent=d.distance;
   document.getElementById('m-seats').textContent=d.seats+' livres';
+  document.getElementById('m-price-tot').textContent='R$ '+d.price.toFixed(2);
   const split=(d.price/2).toFixed(2);
   document.getElementById('m-total').textContent='R$ '+d.price.toFixed(2);
   document.getElementById('m-d-split-label').textContent='🧑‍✈️ '+d.name+' recebe';
   document.getElementById('m-p-split-label').textContent='👤 '+p.name+' paga';
   document.getElementById('m-split').textContent='R$ '+split;
   document.getElementById('m-split2').textContent='R$ '+split;
-  showStep1();
+  showStep1m();
   document.getElementById('modal').style.display='flex';
-  selD=null;selP=null;renderDrivers();renderPassengers();updateCTA();
+  setTimeout(()=>{drawMap('modal-map',d,true);drawMap('modal-map2',d,true);},50);
+  selD=null;selP=null;renderDrivers();renderPassengers();renderRoutePanel(null);updateMapInfo(null);drawMap('map-canvas',null);updateCTA();
 }
 
-function closeModal(){
-  document.getElementById('modal').style.display='none';
-  renderHistory();
+function closeModal(){document.getElementById('modal').style.display='none';renderHistory();}
+function showStep1m(){
+  document.getElementById('modal-step1').style.display='grid';
+  document.getElementById('modal-step2').style.display='none';
+  setTimeout(()=>{if(currentMatchData)drawMap('modal-map',currentMatchData.d,true);},30);
 }
-function showStep1(){document.getElementById('modal-step1').style.display='block';document.getElementById('modal-step2').style.display='none';}
-function showStep2(){document.getElementById('modal-step1').style.display='none';document.getElementById('modal-step2').style.display='block';}
+function showStep2(){
+  document.getElementById('modal-step1').style.display='none';
+  document.getElementById('modal-step2').style.display='grid';
+  setTimeout(()=>{if(currentMatchData)drawMap('modal-map2',currentMatchData.d,true);},30);
+}
 
 function renderHistory(){
   const list=document.getElementById('hist-list');
   const sub=document.getElementById('hist-sub');
-  if(matchHistory.length===0){
-    sub.textContent='Nenhum match realizado ainda. Vá para a aba Match para começar!';
-    list.innerHTML='';return;
-  }
-  sub.textContent=matchHistory.length+' match'+(matchHistory.length>1?'es':'')+ ' confirmado'+(matchHistory.length>1?'s':'');
+  if(matchHistory.length===0){sub.textContent='Nenhum match realizado ainda.';list.innerHTML='';return;}
+  sub.textContent=matchHistory.length+' match'+(matchHistory.length>1?'es':'')+' confirmado'+(matchHistory.length>1?'s':'');
   list.innerHTML=matchHistory.map((m,i)=>`
     <div class="hist-item">
       <div class="hist-num">#${i+1}</div>
@@ -333,7 +581,8 @@ function switchTab(t){
   if(t==='historico')renderHistory();
 }
 
-renderDrivers();renderPassengers();
+// Init
+renderDrivers();renderPassengers();drawMap('map-canvas',null);
 </script>
 </body>
 </html>
