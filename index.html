@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0A0F1E;color:#F0F4FF;font-family:'DM Sans',sans-serif;min-height:100vh;}
+:root{
+  --bg:#0A0F1E;--card:#111827;--accent:#00E5A0;--adim:#00E5A018;--asoft:#00E5A00C;
+  --text:#F0F4FF;--muted:#6B7A99;--border:#1E2D45;--yellow:#FFD166;--blue:#4B9EFF;--bdim:#4B9EFF18;
+}
+header{background:#0D1428;border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:62px;position:sticky;top:0;z-index:50;}
+.logo{display:flex;align-items:center;gap:9px;font-size:20px;font-weight:800;letter-spacing:-0.5px;}
+.logo-mark{width:33px;height:33px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:15px;}
+nav{display:flex;gap:4px;}
+.nav-btn{padding:7px 16px;border-radius:10px;border:none;cursor:pointer;font-size:14px;font-weight:700;font-family:inherit;transition:all 0.15s;}
+.nav-btn.active{background:var(--accent);color:#0A0F1E;}
+.nav-btn.inactive{background:transparent;color:var(--muted);}
+.live-badge{background:var(--adim);color:var(--accent);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;}
+main{max-width:1080px;margin:0 auto;padding:32px 20px;}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px;}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;}
+.stat-num{font-size:32px;font-weight:800;color:var(--accent);letter-spacing:-1px;}
+.stat-label{font-size:13px;color:var(--muted);margin-top:2px;}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.section-title{font-size:22px;font-weight:800;letter-spacing:-0.5px;margin-bottom:3px;}
+.section-sub{color:var(--muted);font-size:13px;margin-bottom:18px;}
+.cards-col{display:flex;flex-direction:column;gap:12px;}
+.card{border-radius:16px;padding:18px;cursor:pointer;position:relative;transition:all 0.2s;border:1.5px solid var(--border);background:var(--card);}
+.card:hover{border-color:#2E3D55;}
+.card.sel-driver{background:linear-gradient(135deg,#0D2A1F,#111827);border-color:var(--accent);transform:scale(1.01);}
+.card.sel-passenger{background:linear-gradient(135deg,#0D1A2E,#111827);border-color:var(--blue);transform:scale(1.01);}
+.check{position:absolute;top:11px;right:11px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;}
+.card-head{display:flex;gap:11px;align-items:center;margin-bottom:9px;}
+.avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#0A0F1E;flex-shrink:0;}
+.name{font-weight:700;font-size:14px;}
+.sub{font-size:11px;color:var(--muted);}
+.rating{color:var(--yellow);font-weight:700;font-size:12px;margin-left:auto;}
+.route{font-size:13px;color:var(--muted);margin-bottom:9px;}
+.card-foot{display:flex;justify-content:space-between;align-items:center;}
+.tags{display:flex;gap:5px;}
+.pill{padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;background:var(--asoft);color:var(--accent);border:1px solid #00E5A030;}
+.price{font-weight:800;font-size:16px;color:var(--accent);}
+.card-meta{margin-top:7px;font-size:11px;color:var(--muted);}
+.cta-box{border-radius:16px;padding:18px;transition:all 0.3s;border:1.5px solid var(--border);background:var(--card);}
+.cta-box.ready{background:linear-gradient(135deg,var(--adim),var(--bdim));border-color:var(--accent);}
+.cta-label{font-size:13px;font-weight:600;color:var(--muted);}
+.cta-label.ready{color:var(--text);}
+.cta-names{font-size:12px;color:var(--muted);margin-top:6px;margin-bottom:12px;}
+.match-btn{width:100%;padding:13px;border-radius:11px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:15px;background:var(--accent);color:#0A0F1E;transition:all 0.2s;margin-top:12px;}
+.match-btn:disabled{opacity:0.4;cursor:not-allowed;}
+.match-btn:not(:disabled){margin-top:0;}
+/* History */
+.hist-item{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.hist-num{font-weight:800;font-size:20px;color:var(--accent);width:28px;flex-shrink:0;}
+.hist-info{flex:1;}
+.hist-name{font-weight:700;font-size:14px;}
+.hist-sub{font-size:11px;color:var(--muted);}
+.hist-sep{font-size:18px;color:var(--border);}
+.hist-price{text-align:right;margin-right:8px;}
+.hist-price-val{font-weight:800;color:var(--accent);font-size:15px;}
+.hist-price-sub{font-size:11px;color:var(--muted);}
+.confirmed{background:var(--adim);color:var(--accent);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;flex-shrink:0;}
+/* Modal */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:999;padding:20px;}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:30px;max-width:440px;width:100%;}
+.modal-emoji{text-align:center;font-size:50px;margin-bottom:6px;}
+.modal-title{text-align:center;font-size:21px;font-weight:800;letter-spacing:-0.5px;}
+.modal-sub{text-align:center;color:var(--muted);font-size:13px;margin-top:4px;margin-bottom:22px;}
+.modal-row{display:flex;gap:12px;align-items:center;margin-bottom:10px;}
+.modal-info{flex:1;}
+.modal-badge{padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;}
+.badge-green{background:var(--adim);color:var(--accent);}
+.badge-blue{background:var(--bdim);color:var(--blue);}
+.modal-route{padding-left:20px;margin-bottom:12px;font-size:13px;color:var(--muted);}
+.divider{height:1px;background:var(--border);margin:14px 0;}
+.modal-stats{display:flex;justify-content:space-between;margin-bottom:18px;}
+.modal-stat-label{font-size:11px;color:var(--muted);}
+.modal-stat-val{font-weight:700;font-size:14px;}
+.modal-btn-primary{width:100%;padding:13px;border-radius:11px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:15px;background:var(--accent);color:#0A0F1E;}
+.cost-box{background:var(--bg);border-radius:14px;padding:18px;margin-bottom:14px;}
+.cost-row{display:flex;justify-content:space-between;margin-bottom:10px;}
+.cost-label{color:var(--muted);font-size:14px;}
+.cost-val{font-weight:700;}
+.cost-split{display:flex;justify-content:space-between;margin-bottom:8px;}
+.split-label{font-weight:600;font-size:14px;}
+.split-val-green{font-weight:800;color:var(--accent);font-size:17px;}
+.split-val-yellow{font-weight:800;color:var(--yellow);font-size:17px;}
+.pix-note{background:var(--asoft);border:1px solid #00E5A030;border-radius:12px;padding:11px 15px;margin-bottom:18px;font-size:13px;color:var(--accent);}
+.btn-row{display:flex;gap:10px;}
+.btn-outline{flex:1;padding:12px;border-radius:11px;border:1px solid var(--accent);cursor:pointer;font-family:inherit;font-weight:700;background:transparent;color:var(--accent);}
+.btn-confirm{flex:2;padding:12px;border-radius:11px;border:none;cursor:pointer;font-family:inherit;font-weight:700;background:var(--accent);color:#0A0F1E;}
+.empty{color:var(--muted);font-size:14px;margin-top:8px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark">🚗</div>
+    vai<span style="color:var(--accent)">junto</span>
+  </div>
+  <nav>
+    <button class="nav-btn active" id="btn-match" onclick="switchTab('match')">🔗 Match</button>
+    <button class="nav-btn inactive" id="btn-historico" onclick="switchTab('historico')">📋 Histórico</button>
+  </nav>
+  <span class="live-badge">● Demo ao vivo</span>
+</header>
+
+<main>
+  <!-- MATCH TAB -->
+  <div id="tab-match">
+    <div class="stats">
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Motoristas disponíveis</div></div>
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Passageiros aguardando</div></div>
+      <div class="stat-card"><div class="stat-num" id="match-count">0</div><div class="stat-label">Matches hoje</div></div>
+    </div>
+
+    <div class="cols">
+      <!-- Drivers -->
+      <div>
+        <div class="section-title">🧑‍✈️ Motoristas</div>
+        <div class="section-sub">Selecione um motorista disponível</div>
+        <div class="cards-col" id="drivers-col"></div>
+      </div>
+
+      <!-- Passengers + CTA -->
+      <div>
+        <div class="section-title">👤 Passageiros</div>
+        <div class="section-sub">Selecione um passageiro para o match</div>
+        <div class="cards-col" id="passengers-col"></div>
+
+        <div class="cta-box" id="cta-box" style="margin-top:18px;">
+          <div class="cta-label" id="cta-label">Selecione motorista e passageiro</div>
+          <div class="cta-names" id="cta-names" style="display:none;"></div>
+          <button class="match-btn" id="match-btn" disabled onclick="doMatch()">🔗 Fazer Match Agora</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORY TAB -->
+  <div id="tab-historico" style="display:none;">
+    <div class="section-title">📋 Histórico de Matches</div>
+    <div id="hist-sub" class="section-sub" style="margin-bottom:24px;">Nenhum match realizado ainda. Vá para a aba Match para começar!</div>
+    <div id="hist-list"></div>
+  </div>
+</main>
+
+<!-- Modal -->
+<div class="overlay" id="modal" style="display:none;" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div id="modal-step1">
+      <div class="modal-emoji">🎉</div>
+      <div class="modal-title">Match realizado!</div>
+      <div class="modal-sub">Motorista e passageiro conectados com sucesso</div>
+      <div class="modal-row">
+        <div class="avatar" id="m-d-av" style="background:linear-gradient(135deg,#00E5A0,#006644)"></div>
+        <div class="modal-info"><div class="name" id="m-d-name"></div><div class="sub" id="m-d-car"></div></div>
+        <span class="modal-badge badge-green">Motorista</span>
+      </div>
+      <div class="modal-route" id="m-d-route"></div>
+      <div class="modal-row">
+        <div class="avatar" id="m-p-av" style="background:linear-gradient(135deg,#4B9EFF,#004499)"></div>
+        <div class="modal-info"><div class="name" id="m-p-name"></div><div class="sub" id="m-p-route"></div></div>
+        <span class="modal-badge badge-blue">Passageiro</span>
+      </div>
+      <div class="divider"></div>
+      <div class="modal-stats">
+        <div><div class="modal-stat-label">Saída</div><div class="modal-stat-val" id="m-time"></div></div>
+        <div><div class="modal-stat-label">Distância</div><div class="modal-stat-val" id="m-dist"></div></div>
+        <div><div class="modal-stat-label">Vagas</div><div class="modal-stat-val" id="m-seats"></div></div>
+      </div>
+      <button class="modal-btn-primary" onclick="showStep2()">Ver divisão de custos →</button>
+    </div>
+    <div id="modal-step2" style="display:none;">
+      <div style="font-size:20px;font-weight:800;letter-spacing:-0.5px;margin-bottom:4px;">💸 Divisão de custos</div>
+      <div style="color:var(--muted);font-size:13px;margin-bottom:20px;">Rateio transparente e automático</div>
+      <div class="cost-box">
+        <div class="cost-row"><span class="cost-label">Custo total da corrida</span><span class="cost-val" id="m-total"></span></div>
+        <div class="cost-row" style="margin-bottom:0"><span class="cost-label">Número de pessoas</span><span class="cost-val">2 pessoas</span></div>
+        <div class="divider"></div>
+        <div class="cost-split"><span class="split-label" id="m-d-split-label"></span><span class="split-val-green" id="m-split"></span></div>
+        <div class="cost-split" style="margin-bottom:0"><span class="split-label" id="m-p-split-label"></span><span class="split-val-yellow" id="m-split2"></span></div>
+      </div>
+      <div class="pix-note">✅ Pagamento via Pix processado automaticamente após a corrida</div>
+      <div class="btn-row">
+        <button class="btn-outline" onclick="showStep1()">← Voltar</button>
+        <button class="btn-confirm" onclick="closeModal()">Confirmar corrida ✓</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const drivers = [
+  {id:1,name:"Carlos Silva",avatar:"CS",rating:4.9,car:"Honda Civic Prata",plate:"BRA-2E19",seats:3,route:"Vila Madalena → Paulista",time:"08:15",price:12.5,distance:"6,2 km",tags:["Silencioso","A/C"]},
+  {id:2,name:"Fernanda Lima",avatar:"FL",rating:4.7,car:"Toyota Corolla Branco",plate:"ABC-1D23",seats:2,route:"Pinheiros → Faria Lima",time:"08:30",price:9.0,distance:"4,8 km",tags:["Música","Pet OK"]},
+  {id:3,name:"Rafael Costa",avatar:"RC",rating:5.0,car:"VW Polo Preto",plate:"DEF-3F45",seats:4,route:"Butantã → República",time:"07:50",price:15.0,distance:"9,1 km",tags:["Rápido","Silencioso"]},
+];
+const passengers = [
+  {id:1,name:"Ana Paula",avatar:"AP",rating:4.8,from:"Vila Madalena",to:"Av. Paulista",time:"08:00"},
+  {id:2,name:"Bruno Souza",avatar:"BS",rating:4.6,from:"Pinheiros",to:"Faria Lima",time:"08:20"},
+  {id:3,name:"Camila Torres",avatar:"CT",rating:4.9,from:"Butantã",to:"Centro",time:"07:45"},
+];
+
+let selD=null, selP=null, matchHistory=[];
+
+function renderDrivers(){
+  const col=document.getElementById('drivers-col');
+  col.innerHTML=drivers.map(d=>`
+    <div class="card ${selD===d.id?'sel-driver':''}" onclick="selectDriver(${d.id})">
+      ${selD===d.id?`<div class="check" style="background:var(--accent);color:#0A0F1E;">✓</div>`:''}
+      <div class="card-head">
+        <div class="avatar" style="background:linear-gradient(135deg,#00E5A0,#006644)">${d.avatar}</div>
+        <div><div class="name">${d.name}</div><div class="sub">${d.car}</div></div>
+        <div class="rating">★ ${d.rating}</div>
+      </div>
+      <div class="route">📍 ${d.route}</div>
+      <div class="card-foot">
+        <div class="tags">${d.tags.map(t=>`<span class="pill">${t}</span>`).join('')}</div>
+        <div class="price">R$ ${d.price.toFixed(2)}</div>
+      </div>
+      <div class="card-meta">🕐 ${d.time} · ${d.seats} vagas · ${d.distance}</div>
+    </div>
+  `).join('');
+}
+
+function renderPassengers(){
+  const col=document.getElementById('passengers-col');
+  col.innerHTML=passengers.map(p=>`
+    <div class="card ${selP===p.id?'sel-passenger':''}" onclick="selectPassenger(${p.id})">
+      ${selP===p.id?`<div class="check" style="background:var(--blue);color:#fff;">✓</div>`:''}
+      <div class="card-head">
+        <div class="avatar" style="background:linear-gradient(135deg,#4B9EFF,#004499)">${p.avatar}</div>
+        <div><div class="name">${p.name}</div><div class="sub">Passageiro verificado</div></div>
+        <div class="rating">★ ${p.rating}</div>
+      </div>
+      <div class="route">📍 ${p.from} → ${p.to}</div>
+      <div class="card-meta">🕐 Horário desejado: ${p.time}</div>
+    </div>
+  `).join('');
+}
+
+function updateCTA(){
+  const box=document.getElementById('cta-box');
+  const label=document.getElementById('cta-label');
+  const names=document.getElementById('cta-names');
+  const btn=document.getElementById('match-btn');
+  const can=selD&&selP;
+  box.className='cta-box'+(can?' ready':'');
+  label.className='cta-label'+(can?' ready':'');
+  if(can){
+    label.textContent='✅ Pronto para fazer o match!';
+    const d=drivers.find(x=>x.id===selD);
+    const p=passengers.find(x=>x.id===selP);
+    names.textContent=d.name+' + '+p.name;
+    names.style.display='block';
+    btn.style.marginTop='0';
+  } else {
+    label.textContent='Selecione motorista e passageiro';
+    names.style.display='none';
+    btn.style.marginTop='12px';
+  }
+  btn.disabled=!can;
+}
+
+function selectDriver(id){selD=selD===id?null:id;renderDrivers();updateCTA();}
+function selectPassenger(id){selP=selP===id?null:id;renderPassengers();updateCTA();}
+
+function doMatch(){
+  if(!selD||!selP)return;
+  const d=drivers.find(x=>x.id===selD);
+  const p=passengers.find(x=>x.id===selP);
+  matchHistory.unshift({d,p,id:Date.now()});
+  document.getElementById('match-count').textContent=matchHistory.length;
+  // fill modal
+  document.getElementById('m-d-av').textContent=d.avatar;
+  document.getElementById('m-d-name').textContent=d.name;
+  document.getElementById('m-d-car').textContent=d.car+' · '+d.plate;
+  document.getElementById('m-d-route').innerHTML='<span style="color:var(--accent)">⟶</span> '+d.route+' · '+d.time;
+  document.getElementById('m-p-av').textContent=p.avatar;
+  document.getElementById('m-p-name').textContent=p.name;
+  document.getElementById('m-p-route').textContent=p.from+' → '+p.to;
+  document.getElementById('m-time').textContent=d.time;
+  document.getElementById('m-dist').textContent=d.distance;
+  document.getElementById('m-seats').textContent=d.seats+' livres';
+  const split=(d.price/2).toFixed(2);
+  document.getElementById('m-total').textContent='R$ '+d.price.toFixed(2);
+  document.getElementById('m-d-split-label').textContent='🧑‍✈️ '+d.name+' recebe';
+  document.getElementById('m-p-split-label').textContent='👤 '+p.name+' paga';
+  document.getElementById('m-split').textContent='R$ '+split;
+  document.getElementById('m-split2').textContent='R$ '+split;
+  showStep1();
+  document.getElementById('modal').style.display='flex';
+  selD=null;selP=null;renderDrivers();renderPassengers();updateCTA();
+}
+
+function closeModal(){
+  document.getElementById('modal').style.display='none';
+  renderHistory();
+}
+function showStep1(){document.getElementById('modal-step1').style.display='block';document.getElementById('modal-step2').style.display='none';}
+function showStep2(){document.getElementById('modal-step1').style.display='none';document.getElementById('modal-step2').style.display='block';}
+
+function renderHistory(){
+  const list=document.getElementById('hist-list');
+  const sub=document.getElementById('hist-sub');
+  if(matchHistory.length===0){
+    sub.textContent='Nenhum match realizado ainda. Vá para a aba Match para começar!';
+    list.innerHTML='';return;
+  }
+  sub.textContent=matchHistory.length+' match'+(matchHistory.length>1?'es':'')+ ' confirmado'+(matchHistory.length>1?'s':'');
+  list.innerHTML=matchHistory.map((m,i)=>`
+    <div class="hist-item">
+      <div class="hist-num">#${i+1}</div>
+      <div class="avatar" style="background:linear-gradient(135deg,#00E5A0,#006644);flex-shrink:0">${m.d.avatar}</div>
+      <div class="hist-info"><div class="hist-name">${m.d.name}</div><div class="hist-sub">${m.d.route}</div></div>
+      <div class="hist-sep">⟷</div>
+      <div class="avatar" style="background:linear-gradient(135deg,#4B9EFF,#004499);flex-shrink:0">${m.p.avatar}</div>
+      <div class="hist-info"><div class="hist-name">${m.p.name}</div><div class="hist-sub">${m.p.from} → ${m.p.to}</div></div>
+      <div class="hist-price"><div class="hist-price-val">R$ ${(m.d.price/2).toFixed(2)}</div><div class="hist-price-sub">cada</div></div>
+      <span class="confirmed">✓ Confirmado</span>
+    </div>
+  `).join('');
+}
+
+function switchTab(t){
+  document.getElementById('tab-match').style.display=t==='match'?'block':'none';
+  document.getElementById('tab-historico').style.display=t==='historico'?'block':'none';
+  document.getElementById('btn-match').className='nav-btn '+(t==='match'?'active':'inactive');
+  document.getElementById('btn-historico').className='nav-btn '+(t==='historico'?'active':'inactive');
+  if(t==='historico')renderHistory();
+}
+
+renderDrivers();renderPassengers();
+</script>
+</body>
+</html>
