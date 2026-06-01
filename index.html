@@ -10,7 +10,6 @@ body{font-family:'DM Sans',sans-serif;min-height:100vh;}
 body.dark{--bg:#0A0F1E;--card:#111827;--card2:#0D1525;--ac:#00E5A0;--adim:#00E5A018;--asoft:#00E5A00C;--tx:#F0F4FF;--mu:#6B7A99;--br:#1E2D45;--yw:#FFD166;--bl:#4B9EFF;--bdim:#4B9EFF18;--hd:#0D1428;--inp:#0D1525;--rd:#FF6B6B;}
 body.light{--bg:#F4F7FF;--card:#FFFFFF;--card2:#EEF2FB;--ac:#009966;--adim:#00996618;--asoft:#00996608;--tx:#0A1628;--mu:#5A6A88;--br:#D0DCF0;--yw:#B07800;--bl:#1A6FCC;--bdim:#1A6FCC18;--hd:#FFFFFF;--inp:#EEF2FB;--rd:#CC3333;}
 body{background:var(--bg);color:var(--tx);transition:background .3s,color .3s;}
-
 header{background:var(--hd);border-bottom:1px solid var(--br);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:54px;position:sticky;top:0;z-index:300;}
 .logo{display:flex;align-items:center;gap:8px;font-size:19px;font-weight:800;letter-spacing:-.5px;color:var(--tx);cursor:pointer;text-decoration:none;}
 .logo:hover{opacity:.8;}
@@ -24,13 +23,11 @@ nav{display:flex;gap:2px;}
 .tb{position:absolute;top:2px;width:16px;height:16px;border-radius:50%;transition:all .25s;font-size:9px;display:flex;align-items:center;justify-content:center;}
 body.dark .tb{left:2px;background:var(--mu);}
 body.light .tb{left:18px;background:var(--ac);}
-
 main{max-width:1120px;margin:0 auto;padding:16px 18px;}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
 .sc{background:var(--card);border:1px solid var(--br);border-radius:12px;padding:12px 14px;}
 .sn{font-size:24px;font-weight:800;color:var(--ac);letter-spacing:-1px;}
 .sl{font-size:11px;color:var(--mu);margin-top:1px;}
-
 /* HOME */
 .home-hero{text-align:center;padding:36px 20px 26px;}
 .home-hero h1{font-size:34px;font-weight:800;letter-spacing:-1px;margin-bottom:8px;}
@@ -41,94 +38,87 @@ main{max-width:1120px;margin:0 auto;padding:16px 18px;}
 .hc-ic{font-size:30px;margin-bottom:8px;}
 .hc-t{font-size:14px;font-weight:800;margin-bottom:4px;color:var(--tx);}
 .hc-s{font-size:11px;color:var(--mu);}
-
-/* ROTA TAB */
-.rota-layout{display:grid;grid-template-columns:1fr 285px;gap:14px;}
-.rota-left{display:flex;flex-direction:column;gap:9px;min-width:0;}  /* min-width:0 prevents overflow */
+/* ROTA */
+.rota-layout{display:grid;grid-template-columns:1fr 270px;gap:14px;}
+.rota-left{display:flex;flex-direction:column;gap:9px;min-width:0;}
 .addr-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.addr-box{background:var(--card);border:1px solid var(--br);border-radius:10px;padding:9px 11px;}
-.addr-label{font-size:10px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;display:flex;align-items:center;gap:4px;}
+.addr-box{background:var(--card);border:1px solid var(--br);border-radius:10px;padding:10px 12px;}
+.addr-label{font-size:10px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;display:flex;align-items:center;gap:4px;}
 .addr-iw{display:flex;gap:5px;}
-.ai{flex:1;background:var(--inp);border:1px solid var(--br);border-radius:7px;padding:7px 8px;font-family:inherit;font-size:12px;color:var(--tx);outline:none;min-width:0;}
+.ai{flex:1;background:var(--inp);border:1px solid var(--br);border-radius:7px;padding:7px 9px;font-family:inherit;font-size:12px;color:var(--tx);outline:none;min-width:0;transition:border-color .15s;}
 .ai:focus{border-color:var(--ac);}
-.asb{padding:7px 10px;border-radius:7px;border:none;cursor:pointer;font-family:inherit;font-size:11px;font-weight:700;background:var(--ac);color:#fff;white-space:nowrap;flex-shrink:0;}
+.asb{padding:7px 11px;border-radius:7px;border:none;cursor:pointer;font-family:inherit;font-size:11px;font-weight:700;background:var(--ac);color:#fff;white-space:nowrap;flex-shrink:0;}
 .asb:disabled{opacity:.4;cursor:not-allowed;}
-
-/* Click mode bar — FIXED: contained, no overflow */
-.click-bar{background:var(--card);border:1px solid var(--br);border-radius:9px;padding:7px 11px;display:flex;align-items:center;gap:7px;flex-wrap:nowrap;overflow:hidden;}
+.click-bar{background:var(--card);border:1px solid var(--br);border-radius:9px;padding:8px 12px;display:flex;align-items:center;gap:7px;}
 .click-label{font-size:11px;font-weight:600;color:var(--mu);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.mode-btn{padding:5px 10px;border-radius:7px;border:1.5px solid var(--br);cursor:pointer;font-family:inherit;font-size:11px;font-weight:700;transition:all .15s;background:var(--card2);color:var(--mu);white-space:nowrap;flex-shrink:0;}
+.mode-btn{padding:5px 11px;border-radius:7px;border:1.5px solid var(--br);cursor:pointer;font-family:inherit;font-size:11px;font-weight:700;transition:all .15s;background:var(--card2);color:var(--mu);white-space:nowrap;flex-shrink:0;}
 .mode-btn.sel-o{background:var(--adim);border-color:var(--ac);color:var(--ac);}
 .mode-btn.sel-d{background:var(--bdim);border-color:var(--bl);color:var(--bl);}
-
-/* Map wrapper — FIXED: explicit height, overflow:hidden */
+.cancel-btn{padding:5px 10px;border-radius:7px;border:1.5px solid var(--rd);cursor:pointer;font-family:inherit;font-size:11px;font-weight:700;background:transparent;color:var(--rd);white-space:nowrap;flex-shrink:0;display:none;}
 .map-wrap{position:relative;border-radius:13px;overflow:hidden;border:2px solid var(--br);transition:border-color .2s;flex-shrink:0;}
 .map-wrap.mode-o{border-color:var(--ac);}
 .map-wrap.mode-d{border-color:var(--bl);}
-#map{height:390px;width:100%;display:block;}  /* explicit block + height */
-.map-hint{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);z-index:500;background:rgba(10,15,30,.9);color:#F0F4FF;padding:5px 13px;border-radius:20px;font-size:11px;font-weight:600;pointer-events:none;white-space:nowrap;}
+#map{height:430px;width:100%;display:block;}
+.map-hint{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);z-index:500;background:rgba(10,15,30,.9);color:#F0F4FF;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:600;pointer-events:none;white-space:nowrap;display:none;}
 body.light .map-hint{background:rgba(255,255,255,.93);color:#0A1628;border:1px solid var(--br);}
-
-/* Cancel button always accessible */
-.cancel-mode{display:none;padding:5px 10px;border-radius:7px;border:1.5px solid var(--rd);cursor:pointer;font-family:inherit;font-size:11px;font-weight:700;background:transparent;color:var(--rd);white-space:nowrap;flex-shrink:0;}
-
-.sidebar{display:flex;flex-direction:column;gap:8px;max-height:600px;overflow-y:auto;}
-.scard{background:var(--card);border:1px solid var(--br);border-radius:11px;padding:11px;}
+/* sidebar */
+.sidebar{display:flex;flex-direction:column;gap:9px;}
+.scard{background:var(--card);border:1px solid var(--br);border-radius:11px;padding:12px;}
 .st{font-weight:700;font-size:12px;margin-bottom:6px;color:var(--tx);}
-.ss{font-size:10px;color:var(--mu);margin-bottom:7px;}
-.pb{width:100%;padding:6px 9px;border-radius:7px;border:1.5px solid var(--br);cursor:pointer;font-family:inherit;font-size:11px;font-weight:600;text-align:left;margin-bottom:4px;transition:all .15s;background:var(--card2);color:var(--tx);display:flex;align-items:center;gap:6px;}
-.pb:last-child{margin-bottom:0;}
-.pb.loading{opacity:.5;cursor:wait;}
-.pb.error{border-color:var(--rd);color:var(--rd);}
-.pb:not(.loading):not(.error):hover{border-color:var(--ac);color:var(--ac);}
-.pb.so{background:var(--adim);border-color:var(--ac);color:var(--ac);}
-.pb.sd{background:var(--bdim);border-color:var(--bl);color:var(--bl);}
+.ss{font-size:10px;color:var(--mu);margin-bottom:0;}
 .sel-pt{display:flex;align-items:center;gap:7px;padding:6px 8px;border-radius:7px;margin-bottom:4px;}
 .sel-pt.orig{background:var(--adim);border:1px solid var(--ac);}
 .sel-pt.dest{background:var(--bdim);border:1px solid var(--bl);}
 .sel-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
 .sel-nm{font-weight:700;flex:1;font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .sel-x{background:none;border:none;cursor:pointer;font-size:12px;color:var(--mu);padding:0;flex-shrink:0;}
-.rscard{background:var(--card);border:1.5px solid var(--br);border-radius:11px;padding:11px;transition:all .3s;}
+.empty-pt{font-size:10px;color:var(--mu);padding:3px 0;}
+.rscard{background:var(--card);border:1.5px solid var(--br);border-radius:11px;padding:12px;transition:all .3s;}
 .rscard.active{border-color:var(--ac);}
 .rrow{display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;}
 .rl{color:var(--mu);}
 .rv{font-weight:700;color:var(--tx);}
-.calc-btn{width:100%;padding:9px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:12px;background:var(--ac);color:#fff;margin-top:6px;}
+.calc-btn{width:100%;padding:10px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:12px;background:var(--ac);color:#fff;margin-top:7px;}
 .calc-btn:disabled{opacity:.4;cursor:not-allowed;}
 .spin{display:inline-block;width:10px;height:10px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:3px;}
 @keyframes spin{to{transform:rotate(360deg)}}
 .rs{display:flex;gap:6px;align-items:flex-start;margin-bottom:5px;}
 .rsd{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:3px;}
 .rsl{width:2px;height:13px;background:var(--br);margin:2px 0 2px 2px;}
+/* tip box */
+.tip-box{background:var(--card);border:1px solid var(--br);border-radius:11px;padding:12px;}
+.tip-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:11px;}
+.tip-item:last-child{margin-bottom:0;}
+.tip-ic{font-size:15px;flex-shrink:0;margin-top:1px;}
+.tip-tx{color:var(--mu);line-height:1.4;}
+.tip-tx b{color:var(--tx);}
+/* driver form */
 .driver-form{background:var(--card);border:1px solid var(--br);border-radius:12px;padding:14px;}
 .df-t{font-size:14px;font-weight:800;margin-bottom:3px;color:var(--tx);}
 .df-s{font-size:10px;color:var(--mu);margin-bottom:10px;}
 .fg{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px;}
 .ff{display:flex;flex-direction:column;gap:3px;}
 .ff label{font-size:9px;font-weight:700;color:var(--mu);text-transform:uppercase;}
-.ff input,.ff select{background:var(--inp);border:1px solid var(--br);border-radius:6px;padding:6px 8px;font-family:inherit;font-size:11px;color:var(--tx);outline:none;}
+.ff input,.ff select{background:var(--inp);border:1px solid var(--br);border-radius:6px;padding:6px 8px;font-family:inherit;font-size:11px;color:var(--tx);outline:none;transition:border-color .15s;}
 .ff input:focus,.ff select:focus{border-color:var(--ac);}
 .ff select option{background:var(--card);}
-.rp{background:var(--adim);border:1px solid var(--ac);border-radius:8px;padding:8px 10px;margin-bottom:8px;}
-.rp-l{color:var(--mu);font-size:9px;margin-bottom:2px;}
-.rp-r{font-weight:700;color:var(--ac);font-size:11px;}
-.rp-d{display:flex;gap:10px;margin-top:4px;}
-.rp-dd{font-size:9px;color:var(--mu);}
-.rp-dd span{color:var(--tx);font-weight:700;}
+.rprev{background:var(--adim);border:1px solid var(--ac);border-radius:8px;padding:8px 10px;margin-bottom:8px;}
+.rprev-l{color:var(--mu);font-size:9px;margin-bottom:2px;}
+.rprev-r{font-weight:700;color:var(--ac);font-size:11px;}
+.rprev-d{display:flex;gap:10px;margin-top:4px;}
+.rprev-dd{font-size:9px;color:var(--mu);}
+.rprev-dd span{color:var(--tx);font-weight:700;}
 .btn-ok{width:100%;padding:9px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:12px;background:var(--ac);color:#fff;}
 .btn-sec{width:100%;padding:8px;border-radius:8px;border:1.5px solid var(--br);cursor:pointer;font-family:inherit;font-weight:700;font-size:11px;background:transparent;color:var(--mu);margin-top:4px;}
-.succ{text-align:center;padding:16px;background:var(--adim);border:1px solid var(--ac);border-radius:10px;margin-top:9px;}
-
+.succ-box{text-align:center;padding:16px;background:var(--adim);border:1px solid var(--ac);border-radius:10px;margin-top:9px;}
 /* MATCH */
-.match-layout{display:grid;grid-template-columns:1fr 285px;gap:14px;}
+.match-layout{display:grid;grid-template-columns:1fr 270px;gap:14px;}
 .ml{display:flex;flex-direction:column;gap:10px;}
 .mini-map-wrap{background:var(--card);border:1px solid var(--br);border-radius:13px;overflow:hidden;}
 .mh{padding:9px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--br);}
 .mht{font-weight:700;font-size:12px;color:var(--tx);}
 .leg{display:flex;gap:8px;font-size:10px;color:var(--mu);}
 .ld{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:2px;}
-/* FIXED mini map: fixed height, no expansion */
 #mini-map{height:210px;width:100%;display:block;}
 .mi{padding:5px 12px 7px;font-size:10px;color:var(--mu);border-top:1px solid var(--br);}
 .cols2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
@@ -166,10 +156,6 @@ body.light .ctab.ready{background:linear-gradient(135deg,#E8FFF7,#EEF4FF);border
 .mb2:not(:disabled){margin-top:5px;}
 .pass-sec{background:var(--card);border:1.5px solid var(--br);border-radius:11px;padding:11px;}
 .par{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px;}
-.mr2{display:flex;gap:9px;align-items:center;margin-bottom:7px;}
-.mbd{padding:2px 8px;border-radius:20px;font-size:9px;font-weight:700;}
-.bg{background:var(--adim);color:var(--ac);}
-.bb{background:var(--bdim);color:var(--bl);}
 /* hist */
 .hi{background:var(--card);border:1px solid var(--br);border-radius:10px;padding:10px 13px;display:flex;align-items:center;gap:8px;margin-bottom:7px;}
 .hn{font-weight:800;font-size:14px;color:var(--ac);width:19px;flex-shrink:0;}
@@ -185,6 +171,10 @@ body.light .ctab.ready{background:linear-gradient(135deg,#E8FFF7,#EEF4FF);border
 .me{font-size:36px;text-align:center;}
 .mti{font-size:17px;font-weight:800;text-align:center;color:var(--tx);margin-top:4px;}
 .msu{color:var(--mu);font-size:11px;text-align:center;margin-top:3px;margin-bottom:13px;}
+.mr2{display:flex;gap:9px;align-items:center;margin-bottom:7px;}
+.mbd{padding:2px 8px;border-radius:20px;font-size:9px;font-weight:700;}
+.mbg{background:var(--adim);color:var(--ac);}
+.mbb{background:var(--bdim);color:var(--bl);}
 .dv{height:1px;background:var(--br);margin:9px 0;}
 .ms{display:flex;justify-content:space-between;margin-bottom:10px;}
 .msl{font-size:9px;color:var(--mu);}
@@ -200,8 +190,6 @@ body.light .ctab.ready{background:linear-gradient(135deg,#E8FFF7,#EEF4FF);border
 .br2{display:flex;gap:6px;}
 .bo{flex:1;padding:9px;border-radius:8px;border:1px solid var(--ac);cursor:pointer;font-family:inherit;font-weight:700;font-size:11px;background:transparent;color:var(--ac);}
 .bc{flex:2;padding:9px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:11px;background:var(--ac);color:#fff;}
-
-/* Leaflet overrides */
 body.dark .leaflet-tile-pane{filter:brightness(.7) invert(1) contrast(3) hue-rotate(200deg) saturate(.3) brightness(.7);}
 body.light .leaflet-tile-pane{filter:none;}
 body.dark .leaflet-container{background:#0A0F1E;}
@@ -240,7 +228,7 @@ body.dark .leaflet-container{background:#0A0F1E;}
       <p>Carona compartilhada inteligente. Encontre motoristas e passageiros na sua rota em Jaboticabal, divida os custos e vá junto!</p>
     </div>
     <div class="home-cards">
-      <div class="hc" onclick="switchTab('rota')"><div class="hc-ic">🗺️</div><div class="hc-t">Planejar Rota</div><div class="hc-s">Defina origem e destino no mapa real de Jaboticabal e calcule o trajeto</div></div>
+      <div class="hc" onclick="switchTab('rota')"><div class="hc-ic">🗺️</div><div class="hc-t">Planejar Rota</div><div class="hc-s">Digite endereços ou clique no mapa de Jaboticabal para calcular o trajeto</div></div>
       <div class="hc" onclick="switchTab('match')"><div class="hc-ic">🔗</div><div class="hc-t">Fazer Match</div><div class="hc-s">Conecte motoristas e passageiros com rotas em Jaboticabal e divida os custos</div></div>
       <div class="hc" onclick="switchTab('historico')"><div class="hc-ic">📋</div><div class="hc-t">Histórico</div><div class="hc-s">Veja todos os matches confirmados</div></div>
     </div>
@@ -250,77 +238,100 @@ body.dark .leaflet-container{background:#0A0F1E;}
   <div id="tab-rota" style="display:none;">
     <div class="rota-layout">
       <div class="rota-left">
+
+        <!-- Address search -->
         <div class="addr-row">
           <div class="addr-box">
             <div class="addr-label"><span style="color:var(--ac)">●</span> Origem</div>
             <div class="addr-iw">
-              <input class="ai" id="addr-o-inp" placeholder="Digite um endereço..." onkeydown="if(event.key==='Enter')searchAddr('o')">
+              <input class="ai" id="addr-o-inp" placeholder="Digite um endereço em Jaboticabal…" onkeydown="if(event.key==='Enter')searchAddr('o')">
               <button class="asb" onclick="searchAddr('o')" id="addr-o-btn">Buscar</button>
             </div>
           </div>
           <div class="addr-box">
             <div class="addr-label"><span style="color:var(--bl)">●</span> Destino</div>
             <div class="addr-iw">
-              <input class="ai" id="addr-d-inp" placeholder="Digite um endereço..." onkeydown="if(event.key==='Enter')searchAddr('d')">
+              <input class="ai" id="addr-d-inp" placeholder="Digite um endereço em Jaboticabal…" onkeydown="if(event.key==='Enter')searchAddr('d')">
               <button class="asb" onclick="searchAddr('d')" id="addr-d-btn">Buscar</button>
             </div>
           </div>
         </div>
 
-        <!-- click bar — fixed, no overflow -->
+        <!-- Click mode bar -->
         <div class="click-bar">
-          <span class="click-label" id="click-lbl">Ou clique no mapa para marcar os pontos</span>
-          <button class="mode-btn" id="mode-o-btn" onclick="setMode('o')">📍 Origem</button>
-          <button class="mode-btn" id="mode-d-btn" onclick="setMode('d')">🏁 Destino</button>
-          <button class="cancel-mode" id="cancel-btn" onclick="setMode(null)">✕ Cancelar</button>
+          <span class="click-label" id="click-lbl">Ou clique no mapa para marcar os pontos diretamente</span>
+          <button class="mode-btn" id="mode-o-btn" onclick="setMode('o')">📍 Clicar Origem</button>
+          <button class="mode-btn" id="mode-d-btn" onclick="setMode('d')">🏁 Clicar Destino</button>
+          <button class="cancel-btn" id="cancel-btn" onclick="setMode(null)">✕ Cancelar</button>
         </div>
 
-        <!-- map wrapper: overflow hidden, fixed height -->
+        <!-- Map -->
         <div class="map-wrap" id="map-wrap">
           <div id="map"></div>
-          <div class="map-hint" id="map-hint" style="display:none;"></div>
+          <div class="map-hint" id="map-hint"></div>
         </div>
 
         <div id="driver-form-area" style="display:none;"></div>
       </div>
 
+      <!-- Sidebar: only selected points + route summary -->
       <div class="sidebar">
+
+        <!-- Selected points -->
         <div class="scard">
           <div class="st">📋 Pontos selecionados</div>
-          <div id="sel-o-el" style="display:none;" class="sel-pt orig"><div class="sel-dot" style="background:var(--ac);"></div><span class="sel-nm" id="sel-o-nm"></span><button class="sel-x" onclick="clearO()">✕</button></div>
-          <div id="sel-o-empty" style="font-size:10px;color:var(--mu);padding:3px 0 5px;">Nenhuma origem definida</div>
-          <div id="sel-d-el" style="display:none;" class="sel-pt dest"><div class="sel-dot" style="background:var(--bl);"></div><span class="sel-nm" id="sel-d-nm"></span><button class="sel-x" onclick="clearD()">✕</button></div>
-          <div id="sel-d-empty" style="font-size:10px;color:var(--mu);padding:3px 0 0;">Nenhum destino definido</div>
+          <div id="sel-o-el" style="display:none;" class="sel-pt orig">
+            <div class="sel-dot" style="background:var(--ac);"></div>
+            <span class="sel-nm" id="sel-o-nm"></span>
+            <button class="sel-x" onclick="clearO()">✕</button>
+          </div>
+          <div id="sel-o-empty" class="empty-pt">Nenhuma origem definida</div>
+          <div id="sel-d-el" style="display:none;" class="sel-pt dest">
+            <div class="sel-dot" style="background:var(--bl);"></div>
+            <span class="sel-nm" id="sel-d-nm"></span>
+            <button class="sel-x" onclick="clearD()">✕</button>
+          </div>
+          <div id="sel-d-empty" class="empty-pt">Nenhum destino definido</div>
         </div>
-        <div class="scard">
-          <div class="st">📍 Origens sugeridas</div>
-          <div class="ss">Verificadas via OpenStreetMap</div>
-          <button class="pb loading" id="ob0" onclick="presetClick('o',0)"><span id="ob0-ic">⏳</span><span id="ob0-nm">Carregando…</span></button>
-          <button class="pb loading" id="ob1" onclick="presetClick('o',1)"><span id="ob1-ic">⏳</span><span id="ob1-nm">Carregando…</span></button>
-          <button class="pb loading" id="ob2" onclick="presetClick('o',2)"><span id="ob2-ic">⏳</span><span id="ob2-nm">Carregando…</span></button>
-          <button class="pb loading" id="ob3" onclick="presetClick('o',3)"><span id="ob3-ic">⏳</span><span id="ob3-nm">Carregando…</span></button>
-          <button class="pb loading" id="ob4" onclick="presetClick('o',4)"><span id="ob4-ic">⏳</span><span id="ob4-nm">Carregando…</span></button>
-        </div>
-        <div class="scard">
-          <div class="st">🏁 Destinos sugeridos</div>
-          <div class="ss">Verificadas via OpenStreetMap</div>
-          <button class="pb loading" id="db0" onclick="presetClick('d',0)"><span id="db0-ic">⏳</span><span id="db0-nm">Carregando…</span></button>
-          <button class="pb loading" id="db1" onclick="presetClick('d',1)"><span id="db1-ic">⏳</span><span id="db1-nm">Carregando…</span></button>
-          <button class="pb loading" id="db2" onclick="presetClick('d',2)"><span id="db2-ic">⏳</span><span id="db2-nm">Carregando…</span></button>
-          <button class="pb loading" id="db3" onclick="presetClick('d',3)"><span id="db3-ic">⏳</span><span id="db3-nm">Carregando…</span></button>
-          <button class="pb loading" id="db4" onclick="presetClick('d',4)"><span id="db4-ic">⏳</span><span id="db4-nm">Carregando…</span></button>
-        </div>
+
+        <!-- Route summary + calc -->
         <div class="rscard" id="rscard">
-          <div id="rs-empty" style="font-size:10px;color:var(--mu);">Selecione origem e destino para calcular</div>
+          <div id="rs-empty" style="font-size:10px;color:var(--mu);">Selecione origem e destino para calcular a rota</div>
           <div id="rs-content" style="display:none;">
-            <div class="rs"><div style="display:flex;flex-direction:column;align-items:center;"><div class="rsd" style="background:var(--ac);"></div><div class="rsl"></div></div><div style="overflow:hidden;"><div style="font-size:10px;font-weight:700;color:var(--ac);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" id="rs-o"></div><div style="font-size:9px;color:var(--mu);">Origem</div></div></div>
-            <div class="rs" style="margin-bottom:8px;"><div><div class="rsd" style="background:var(--bl);"></div></div><div style="overflow:hidden;"><div style="font-size:10px;font-weight:700;color:var(--bl);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" id="rs-d"></div><div style="font-size:9px;color:var(--mu);">Destino</div></div></div>
+            <div class="rs">
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="rsd" style="background:var(--ac);"></div>
+                <div class="rsl"></div>
+              </div>
+              <div style="overflow:hidden;">
+                <div style="font-size:10px;font-weight:700;color:var(--ac);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" id="rs-o"></div>
+                <div style="font-size:9px;color:var(--mu);">Origem</div>
+              </div>
+            </div>
+            <div class="rs" style="margin-bottom:9px;">
+              <div><div class="rsd" style="background:var(--bl);"></div></div>
+              <div style="overflow:hidden;">
+                <div style="font-size:10px;font-weight:700;color:var(--bl);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" id="rs-d"></div>
+                <div style="font-size:9px;color:var(--mu);">Destino</div>
+              </div>
+            </div>
             <div class="rrow"><span class="rl">Distância pelas ruas</span><span class="rv" id="rs-dist">—</span></div>
             <div class="rrow"><span class="rl">Tempo estimado</span><span class="rv" id="rs-time">—</span></div>
             <div class="rrow" style="margin-bottom:0"><span class="rl">Valor sugerido</span><span style="font-weight:800;color:var(--ac);font-size:12px;" id="rs-price">—</span></div>
           </div>
-          <button class="calc-btn" id="calc-btn" disabled onclick="calcRoute()"><span id="calc-txt">Calcular rota pelas ruas →</span></button>
+          <button class="calc-btn" id="calc-btn" disabled onclick="calcRoute()">
+            <span id="calc-txt">Calcular rota pelas ruas →</span>
+          </button>
         </div>
+
+        <!-- Tips -->
+        <div class="tip-box">
+          <div class="st">💡 Como usar</div>
+          <div class="tip-item"><div class="tip-ic">⌨️</div><div class="tip-tx"><b>Digite o endereço</b> nos campos acima e clique em Buscar — o mapa posiciona o ponto automaticamente.</div></div>
+          <div class="tip-item"><div class="tip-ic">🖱️</div><div class="tip-tx"><b>Clique no mapa</b> após ativar "Clicar Origem" ou "Clicar Destino" para marcar o ponto exato.</div></div>
+          <div class="tip-item"><div class="tip-ic">🔗</div><div class="tip-tx">Após calcular, <b>publique sua carona</b> e ela aparece na aba Match para passageiros.</div></div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -345,7 +356,7 @@ body.dark .leaflet-container{background:#0A0F1E;}
       <div class="mr">
         <div class="pass-sec">
           <div class="st">🧳 Sou passageiro — minha rota</div>
-          <div class="ss">Informe sua rota para encontrar motoristas compatíveis</div>
+          <div class="ss" style="margin-bottom:8px;">Informe sua rota para encontrar motoristas compatíveis</div>
           <div class="par">
             <div class="ff"><label>📍 Minha partida</label><input class="ai" id="pas-o-inp" placeholder="Ex: UNESP, Centro…" style="font-size:11px;"></div>
             <div class="ff"><label>🏁 Meu destino</label><input class="ai" id="pas-d-inp" placeholder="Ex: Prefeitura, Lago…" style="font-size:11px;"></div>
@@ -376,9 +387,9 @@ body.dark .leaflet-container{background:#0A0F1E;}
   <div class="mod" onclick="event.stopPropagation()">
     <div id="ms1">
       <div class="me">🎉</div><div class="mti">Match realizado!</div><div class="msu">Motorista e passageiro conectados em Jaboticabal</div>
-      <div class="mr2"><div class="av" id="mdav" style="background:linear-gradient(135deg,#00E5A0,#006644)"></div><div style="flex:1;"><div class="nm" id="mdnm"></div><div class="sb2" id="mdcar"></div></div><span class="mbd bg">Motorista</span></div>
+      <div class="mr2"><div class="av" id="mdav" style="background:linear-gradient(135deg,#00E5A0,#006644)"></div><div style="flex:1;"><div class="nm" id="mdnm"></div><div class="sb2" id="mdcar"></div></div><span class="mbd mbg">Motorista</span></div>
       <div style="padding-left:12px;margin-bottom:7px;font-size:10px;color:var(--mu);" id="mdrt"></div>
-      <div class="mr2"><div class="av" id="mpav" style="background:linear-gradient(135deg,#4B9EFF,#004499)"></div><div style="flex:1;"><div class="nm" id="mpnm"></div><div class="sb2" id="mprte"></div></div><span class="mbd bb">Passageiro</span></div>
+      <div class="mr2"><div class="av" id="mpav" style="background:linear-gradient(135deg,#4B9EFF,#004499)"></div><div style="flex:1;"><div class="nm" id="mpnm"></div><div class="sb2" id="mprte"></div></div><span class="mbd mbb">Passageiro</span></div>
       <div class="dv"></div>
       <div class="ms">
         <div><div class="msl">Saída</div><div class="msv" id="mtime"></div></div>
@@ -427,59 +438,8 @@ function goHome(){
   document.getElementById('tab-home').style.display='block';
 }
 
-// ── PRESETS — geocoded live ──
-const PO=[
-  {q:'FCAV UNESP Jaboticabal SP Brasil',              ic:'🎓', lb:'UNESP Jaboticabal'},
-  {q:'Hospital Santa Casa Misericórdia Jaboticabal SP',ic:'🏥', lb:'Santa Casa'},
-  {q:'Rodoviária Jaboticabal SP Brasil',               ic:'🚌', lb:'Terminal Rodoviário'},
-  {q:'Catedral São Sebastião Jaboticabal SP',          ic:'⛪', lb:'Catedral São Sebastião'},
-  {q:'Faculdade Estácio Jaboticabal SP',               ic:'📖', lb:'Faculdade Estácio'},
-];
-const PD=[
-  {q:'Prefeitura Municipal Jaboticabal SP Esplanada Lago',ic:'🏢', lb:'Prefeitura Municipal'},
-  {q:'Lago Municipal Jaboticabal SP',                     ic:'🌳', lb:'Lago Municipal'},
-  {q:'Biblioteca Municipal Jaboticabal SP',                ic:'📚', lb:'Biblioteca Municipal'},
-  {q:'Estádio Municipal Jaboticabal SP',                   ic:'⚽', lb:'Estádio Municipal'},
-  {q:'Praça Barão Monte Santo Jaboticabal SP',             ic:'🎭', lb:'Praça da Matriz'},
-];
-const GEO_O=new Array(5).fill(null);
-const GEO_D=new Array(5).fill(null);
-
-async function geocode(q){
-  try{
-    const r=await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=1&accept-language=pt-BR&countrycodes=br`);
-    const d=await r.json();
-    if(d.length) return {lat:+d[0].lat,lng:+d[0].lon};
-  }catch(e){}
-  return null;
-}
-
-async function loadPresets(){
-  for(let i=0;i<PO.length;i++){
-    const g=await geocode(PO[i].q);
-    const btn=document.getElementById('ob'+i);
-    if(g){GEO_O[i]={...g,lb:PO[i].lb};btn.className='pb';document.getElementById('ob'+i+'-ic').textContent=PO[i].ic;document.getElementById('ob'+i+'-nm').textContent=PO[i].lb;}
-    else{btn.className='pb error';document.getElementById('ob'+i+'-ic').textContent='⚠️';document.getElementById('ob'+i+'-nm').textContent=PO[i].lb;}
-    await new Promise(r=>setTimeout(r,220));
-  }
-  for(let i=0;i<PD.length;i++){
-    const g=await geocode(PD[i].q);
-    const btn=document.getElementById('db'+i);
-    if(g){GEO_D[i]={...g,lb:PD[i].lb};btn.className='pb';document.getElementById('db'+i+'-ic').textContent=PD[i].ic;document.getElementById('db'+i+'-nm').textContent=PD[i].lb;}
-    else{btn.className='pb error';document.getElementById('db'+i+'-ic').textContent='⚠️';document.getElementById('db'+i+'-nm').textContent=PD[i].lb;}
-    await new Promise(r=>setTimeout(r,220));
-  }
-}
-
-function presetClick(t,i){
-  const p=t==='o'?GEO_O[i]:GEO_D[i]; if(!p)return;
-  if(t==='o'){document.querySelectorAll('[id^="ob"]').forEach((b,j)=>{if(b.className!=='pb error')b.className='pb'+(j===i?' so':'');});applyO({lat:p.lat,lng:p.lng,name:p.lb});}
-  else{document.querySelectorAll('[id^="db"]').forEach((b,j)=>{if(b.className!=='pb error')b.className='pb'+(j===i?' sd':'');});applyD({lat:p.lat,lng:p.lng,name:p.lb});}
-  if(selO&&selD2) fitB();
-}
-
 // ── MAIN MAP ──
-let leafMap,oMk=null,dMk=null,rl=null,animT=null;
+let leafMap, oMk=null, dMk=null, routeLine=null, animT=null;
 let clickMode=null, selO=null, selD2=null, routeData=null;
 const JABO=[-21.2560,-48.3210];
 
@@ -493,17 +453,17 @@ function initMap(){
   leafMap=L.map('map',{zoomControl:true,scrollWheelZoom:true}).setView(JABO,14);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap',maxZoom:19}).addTo(leafMap);
   leafMap.on('click',function(e){
-    if(!clickMode)return;
+    if(!clickMode) return;
     const {lat,lng}=e.latlng;
     fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&accept-language=pt-BR`)
       .then(r=>r.json()).then(d=>{
         const a=d.address||{};
         const name=a.road?(a.road+(a.house_number?' '+a.house_number:'')):(a.suburb||a.neighbourhood||'Ponto selecionado');
-        if(clickMode==='o') applyO({lat,lng,name}); else applyD({lat,lng,name});
+        clickMode==='o' ? applyO({lat,lng,name}) : applyD({lat,lng,name});
         setMode(null);
       }).catch(()=>{
         const name=`${lat.toFixed(5)}, ${lng.toFixed(5)}`;
-        if(clickMode==='o') applyO({lat,lng,name}); else applyD({lat,lng,name});
+        clickMode==='o' ? applyO({lat,lng,name}) : applyD({lat,lng,name});
         setMode(null);
       });
   });
@@ -520,61 +480,110 @@ function setMode(m){
   cancelBtn.style.display=m?'block':'none';
   if(m==='o'){
     hint.style.display='block'; hint.textContent='📍 Clique no mapa para definir a ORIGEM';
-    wrap.className='map-wrap mode-o'; lbl.textContent='Modo: definindo ORIGEM — clique no mapa';
+    wrap.className='map-wrap mode-o'; lbl.textContent='Modo ativo: definindo ORIGEM — clique no mapa';
   } else if(m==='d'){
     hint.style.display='block'; hint.textContent='🏁 Clique no mapa para definir o DESTINO';
-    wrap.className='map-wrap mode-d'; lbl.textContent='Modo: definindo DESTINO — clique no mapa';
+    wrap.className='map-wrap mode-d'; lbl.textContent='Modo ativo: definindo DESTINO — clique no mapa';
   } else {
     hint.style.display='none'; wrap.className='map-wrap';
-    lbl.textContent='Ou clique no mapa para marcar os pontos';
+    lbl.textContent='Ou clique no mapa para marcar os pontos diretamente';
   }
 }
 
 async function searchAddr(t){
   const inp=document.getElementById('addr-'+t+'-inp'), btn=document.getElementById('addr-'+t+'-btn');
-  const q=inp.value.trim(); if(!q)return;
+  const q=inp.value.trim(); if(!q) return;
   btn.disabled=true; btn.textContent='⏳';
   try{
     const r=await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q+', Jaboticabal, SP, Brasil')}&format=json&limit=1&accept-language=pt-BR`);
     const d=await r.json();
-    if(d.length){const pt={lat:+d[0].lat,lng:+d[0].lon,name:d[0].display_name.split(',').slice(0,2).join(',').trim()};if(t==='o')applyO(pt);else applyD(pt);if(selO&&selD2)fitB();}
-    else{inp.style.borderColor='var(--rd)';setTimeout(()=>inp.style.borderColor='',2000);}
+    if(d.length){
+      const pt={lat:+d[0].lat,lng:+d[0].lon,name:d[0].display_name.split(',').slice(0,2).join(',').trim()};
+      t==='o' ? applyO(pt) : applyD(pt);
+      if(selO&&selD2) fitB();
+    } else {
+      inp.style.borderColor='var(--rd)';
+      setTimeout(()=>inp.style.borderColor='',2000);
+    }
   }catch(e){}
   btn.disabled=false; btn.textContent='Buscar';
 }
 
-function applyO(pt){selO=pt;if(oMk)leafMap.removeLayer(oMk);oMk=L.marker([pt.lat,pt.lng],{icon:mkIcon('#00E5A0','A')}).addTo(leafMap).bindPopup(`<b>Origem</b><br>${pt.name}`).openPopup();document.getElementById('sel-o-el').style.display='flex';document.getElementById('sel-o-empty').style.display='none';document.getElementById('sel-o-nm').textContent=pt.name;clearRouteLayer();updateRS();}
-function applyD(pt){selD2=pt;if(dMk)leafMap.removeLayer(dMk);dMk=L.marker([pt.lat,pt.lng],{icon:mkIcon('#4B9EFF','B')}).addTo(leafMap).bindPopup(`<b>Destino</b><br>${pt.name}`).openPopup();document.getElementById('sel-d-el').style.display='flex';document.getElementById('sel-d-empty').style.display='none';document.getElementById('sel-d-nm').textContent=pt.name;clearRouteLayer();updateRS();}
-function clearO(){selO=null;if(oMk){leafMap.removeLayer(oMk);oMk=null;}document.getElementById('sel-o-el').style.display='none';document.getElementById('sel-o-empty').style.display='block';document.querySelectorAll('[id^="ob"]').forEach(b=>{if(b.className!=='pb error')b.className='pb';});clearRouteLayer();updateRS();}
-function clearD(){selD2=null;if(dMk){leafMap.removeLayer(dMk);dMk=null;}document.getElementById('sel-d-el').style.display='none';document.getElementById('sel-d-empty').style.display='block';document.querySelectorAll('[id^="db"]').forEach(b=>{if(b.className!=='pb error')b.className='pb';});clearRouteLayer();updateRS();}
-function fitB(){if(!selO||!selD2)return;leafMap.fitBounds([[selO.lat,selO.lng],[selD2.lat,selD2.lng]],{padding:[55,55]});}
-function clearRouteLayer(){if(rl){leafMap.removeLayer(rl);rl=null;}if(animT){clearInterval(animT);animT=null;}document.getElementById('driver-form-area').style.display='none';routeData=null;}
+function applyO(pt){
+  selO=pt;
+  if(oMk) leafMap.removeLayer(oMk);
+  oMk=L.marker([pt.lat,pt.lng],{icon:mkIcon('#00E5A0','A')}).addTo(leafMap).bindPopup(`<b>Origem</b><br>${pt.name}`).openPopup();
+  document.getElementById('sel-o-el').style.display='flex';
+  document.getElementById('sel-o-empty').style.display='none';
+  document.getElementById('sel-o-nm').textContent=pt.name;
+  clearRouteLayer(); updateRS();
+}
+function applyD(pt){
+  selD2=pt;
+  if(dMk) leafMap.removeLayer(dMk);
+  dMk=L.marker([pt.lat,pt.lng],{icon:mkIcon('#4B9EFF','B')}).addTo(leafMap).bindPopup(`<b>Destino</b><br>${pt.name}`).openPopup();
+  document.getElementById('sel-d-el').style.display='flex';
+  document.getElementById('sel-d-empty').style.display='none';
+  document.getElementById('sel-d-nm').textContent=pt.name;
+  clearRouteLayer(); updateRS();
+}
+function clearO(){
+  selO=null; if(oMk){leafMap.removeLayer(oMk);oMk=null;}
+  document.getElementById('sel-o-el').style.display='none';
+  document.getElementById('sel-o-empty').style.display='block';
+  clearRouteLayer(); updateRS();
+}
+function clearD(){
+  selD2=null; if(dMk){leafMap.removeLayer(dMk);dMk=null;}
+  document.getElementById('sel-d-el').style.display='none';
+  document.getElementById('sel-d-empty').style.display='block';
+  clearRouteLayer(); updateRS();
+}
+function fitB(){
+  if(!selO||!selD2) return;
+  leafMap.fitBounds([[selO.lat,selO.lng],[selD2.lat,selD2.lng]],{padding:[55,55]});
+}
+function clearRouteLayer(){
+  if(routeLine){leafMap.removeLayer(routeLine);routeLine=null;}
+  if(animT){clearInterval(animT);animT=null;}
+  document.getElementById('driver-form-area').style.display='none';
+  routeData=null;
+}
 function updateRS(){
   const ok=!!(selO&&selD2);
   document.getElementById('calc-btn').disabled=!ok;
   document.getElementById('rscard').className='rscard'+(ok?' active':'');
   document.getElementById('rs-empty').style.display=ok?'none':'block';
   document.getElementById('rs-content').style.display=ok?'block':'none';
-  if(ok){document.getElementById('rs-o').textContent=selO.name;document.getElementById('rs-d').textContent=selD2.name;['rs-dist','rs-time','rs-price'].forEach(id=>document.getElementById(id).textContent='—');document.getElementById('calc-txt').textContent='Calcular rota pelas ruas →';}
+  if(ok){
+    document.getElementById('rs-o').textContent=selO.name;
+    document.getElementById('rs-d').textContent=selD2.name;
+    ['rs-dist','rs-time','rs-price'].forEach(id=>document.getElementById(id).textContent='—');
+    document.getElementById('calc-txt').textContent='Calcular rota pelas ruas →';
+  }
 }
 
 async function calcRoute(){
-  if(!selO||!selD2)return;
-  const btn=document.getElementById('calc-btn'),txt=document.getElementById('calc-txt');
+  if(!selO||!selD2) return;
+  const btn=document.getElementById('calc-btn'), txt=document.getElementById('calc-txt');
   btn.disabled=true; txt.innerHTML='<span class="spin"></span>Buscando rota…'; clearRouteLayer();
   try{
     const r=await fetch(`https://router.project-osrm.org/route/v1/driving/${selO.lng},${selO.lat};${selD2.lng},${selD2.lat}?overview=full&geometries=geojson`);
     const j=await r.json(); const route=j.routes[0];
     const coords=route.geometry.coordinates.map(c=>[c[1],c[0]]);
-    const distKm=(route.distance/1000).toFixed(1), mins=Math.round(route.duration/60), price=Math.max(5,(route.distance/1000)*2.2).toFixed(2);
+    const distKm=(route.distance/1000).toFixed(1);
+    const mins=Math.round(route.duration/60);
+    const price=Math.max(5,(route.distance/1000)*2.2).toFixed(2);
     document.getElementById('rs-dist').textContent=distKm+' km';
     document.getElementById('rs-time').textContent=mins+' min';
     document.getElementById('rs-price').textContent='R$ '+price;
     routeData={distKm,mins,price,o:selO,d:selD2,coords};
-    rl=L.polyline(coords,{color:'#00E5A0',weight:5,opacity:0,dashArray:'14 7'}).addTo(leafMap);
-    leafMap.fitBounds(rl.getBounds(),{padding:[45,45]});
-    let op=0; const fade=setInterval(()=>{op=Math.min(1,op+.07);rl.setStyle({opacity:op,color:isDark?'#00E5A0':'#009966'});if(op>=1)clearInterval(fade);},25);
-    let off=0; animT=setInterval(()=>{off=(off+1)%22;if(rl._path)rl._path.style.strokeDashoffset='-'+off+'px';},40);
+    routeLine=L.polyline(coords,{color:'#00E5A0',weight:5,opacity:0,dashArray:'14 7'}).addTo(leafMap);
+    leafMap.fitBounds(routeLine.getBounds(),{padding:[45,45]});
+    let op=0;
+    const fade=setInterval(()=>{op=Math.min(1,op+.07);routeLine.setStyle({opacity:op,color:isDark?'#00E5A0':'#009966'});if(op>=1)clearInterval(fade);},25);
+    let off=0;
+    animT=setInterval(()=>{off=(off+1)%22;if(routeLine._path)routeLine._path.style.strokeDashoffset='-'+off+'px';},40);
     txt.textContent='Rota calculada ✓ — Refazer'; btn.disabled=false;
     showDriverForm(routeData);
   }catch(e){txt.textContent='Erro — tente novamente'; btn.disabled=false;}
@@ -583,11 +592,12 @@ async function calcRoute(){
 // ── DRIVER FORM ──
 let registeredDrivers=[];
 function showDriverForm(rd){
-  const area=document.getElementById('driver-form-area'); area.style.display='block';
+  const area=document.getElementById('driver-form-area');
+  area.style.display='block';
   area.innerHTML=`<div class="driver-form">
     <div class="df-t">🧑‍✈️ Oferecer esta carona</div>
     <div class="df-s">Publique sua carona nesta rota para passageiros encontrarem você</div>
-    <div class="rp"><div class="rp-l">Rota calculada</div><div class="rp-r">📍 ${rd.o.name} → ${rd.d.name}</div><div class="rp-d"><div class="rp-dd">Dist: <span>${rd.distKm} km</span></div><div class="rp-dd">Tempo: <span>${rd.mins} min</span></div><div class="rp-dd">Sugerido: <span>R$ ${rd.price}</span></div></div></div>
+    <div class="rprev"><div class="rprev-l">Rota calculada</div><div class="rprev-r">📍 ${rd.o.name} → ${rd.d.name}</div><div class="rprev-d"><div class="rprev-dd">Dist: <span>${rd.distKm} km</span></div><div class="rprev-dd">Tempo: <span>${rd.mins} min</span></div><div class="rprev-dd">Sugerido: <span>R$ ${rd.price}</span></div></div></div>
     <div class="fg">
       <div class="ff"><label>Nome completo</label><input type="text" id="f-name" placeholder="João Silva"></div>
       <div class="ff"><label>Telefone</label><input type="text" id="f-phone" placeholder="(16) 9 9999-9999"></div>
@@ -604,30 +614,42 @@ function showDriverForm(rd){
 }
 
 function submitDriver(){
-  const name=document.getElementById('f-name').value.trim(), car=document.getElementById('f-car').value.trim(), plate=document.getElementById('f-plate').value.trim();
+  const name=document.getElementById('f-name').value.trim();
+  const car=document.getElementById('f-car').value.trim();
+  const plate=document.getElementById('f-plate').value.trim();
   if(!name||!car||!plate){alert('Preencha Nome, Carro e Placa!');return;}
-  const seats=+document.getElementById('f-seats').value, time=document.getElementById('f-time').value, price=+document.getElementById('f-price').value, pref=document.getElementById('f-pref').value;
+  const seats=+document.getElementById('f-seats').value;
+  const time=document.getElementById('f-time').value;
+  const price=+document.getElementById('f-price').value;
+  const pref=document.getElementById('f-pref').value;
   const ini=name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
   const oLb=routeData.o.name.split(',')[0].split(' ').slice(0,3).join(' ');
   const dLb=routeData.d.name.split(',')[0].split(' ').slice(0,3).join(' ');
-  registeredDrivers.push({id:Date.now(),name,avatar:ini,rating:5.0,car,plate,seats,route:oLb+' → '+dLb,time,price,distance:routeData.distKm+' km',tags:[pref==='Sem preferência'?'Novo':pref,'A/C'],routeCoords:routeData.coords,stops:[{label:oLb,sub:'Saída',lat:routeData.o.lat,lng:routeData.o.lng,color:'#00E5A0'},{label:dLb,sub:'Chegada',lat:routeData.d.lat,lng:routeData.d.lng,color:'#FFD166'}]});
+  const newD={
+    id:Date.now(),name,avatar:ini,rating:5.0,car,plate,seats,
+    route:oLb+' → '+dLb,time,price,distance:routeData.distKm+' km',
+    tags:[pref==='Sem preferência'?'Novo':pref,'A/C'],
+    routeCoords:routeData.coords,
+    stops:[
+      {label:oLb,sub:'Saída',lat:routeData.o.lat,lng:routeData.o.lng,color:'#00E5A0'},
+      {label:dLb,sub:'Chegada',lat:routeData.d.lat,lng:routeData.d.lng,color:'#FFD166'}
+    ]
+  };
+  registeredDrivers.push(newD);
   allDrivers=[...baseDrivers,...registeredDrivers];
   document.getElementById('dr-count').textContent=allDrivers.length;
-  document.getElementById('driver-form-area').innerHTML=`<div class="succ"><div style="font-size:28px;margin-bottom:5px;">🎉</div><div style="font-size:13px;font-weight:800;color:var(--ac);margin-bottom:3px;">Carona publicada!</div><div style="font-size:10px;color:var(--mu);">${name} — ${car}<br>${oLb} → ${dLb} · ${time} · ${seats} vagas · R$ ${price.toFixed(2)}<br><br>Veja na aba <b>🔗 Match</b>!</div></div>`;
+  document.getElementById('driver-form-area').innerHTML=`<div class="succ-box"><div style="font-size:28px;margin-bottom:5px;">🎉</div><div style="font-size:13px;font-weight:800;color:var(--ac);margin-bottom:3px;">Carona publicada!</div><div style="font-size:10px;color:var(--mu);">${name} — ${car}<br>${oLb} → ${dLb} · ${time} · ${seats} vagas · R$ ${price.toFixed(2)}<br><br>Veja na aba <b>🔗 Match</b>!</div></div>`;
   setTimeout(()=>{document.getElementById('driver-form-area').style.display='none';renderD();},4000);
 }
 
 // ── MINI MAP ──
 let miniMap=null, miniRL=null, miniOM=null, miniDM=null;
 function initMiniMap(){
-  if(miniMap)return;
-  // Use same Jaboticabal center
+  if(miniMap) return;
   miniMap=L.map('mini-map',{zoomControl:false,scrollWheelZoom:false,dragging:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false}).setView(JABO,13);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19}).addTo(miniMap);
-  // Force correct size after init
   setTimeout(()=>miniMap.invalidateSize(),150);
 }
-
 function updateMiniMap(driver){
   if(!miniMap) initMiniMap();
   if(miniRL){miniMap.removeLayer(miniRL);miniRL=null;}
@@ -636,8 +658,7 @@ function updateMiniMap(driver){
   if(!driver){
     miniMap.setView(JABO,13);
     document.getElementById('map-info').textContent='Selecione um motorista para ver a rota em Jaboticabal';
-    setTimeout(()=>miniMap.invalidateSize(),100);
-    return;
+    setTimeout(()=>miniMap.invalidateSize(),100); return;
   }
   document.getElementById('map-info').textContent=driver.route+' · '+driver.distance+' · Saída '+driver.time;
   const o=driver.stops[0], d=driver.stops[driver.stops.length-1];
@@ -654,17 +675,7 @@ function updateMiniMap(driver){
   setTimeout(()=>miniMap.invalidateSize(),100);
 }
 
-// ── JABOTICABAL DRIVERS ──
-// Real Jaboticabal coordinates (verified):
-// UNESP:        -21.2644, -48.3236
-// Santa Casa:   -21.2538, -48.3222
-// Terminal Rod: -21.2610, -48.3270
-// Catedral:     -21.2543, -48.3196
-// Prefeitura:   -21.2471, -48.3254  (Esplanada do Lago, Vila Serra)
-// Lago Municipal:-21.2475,-48.3248
-// Praça Matriz: -21.2543, -48.3196
-// Estádio:      -21.2650, -48.3160
-// Centro:       -21.2555, -48.3200
+// ── MATCH DATA — Jaboticabal routes ──
 const baseDrivers=[
   {id:1,name:"Carlos Mendes",avatar:"CM",rating:4.9,car:"Fiat Argo Prata",plate:"JAB-1A23",seats:3,
    route:"UNESP → Centro",time:"07:30",price:8.0,distance:"3,2 km",tags:["Silencioso","A/C"],routeCoords:null,
@@ -675,29 +686,53 @@ const baseDrivers=[
   {id:3,name:"Rafael Souza",avatar:"RS",rating:5.0,car:"Chevrolet Onix Preto",plate:"JAB-3C67",seats:4,
    route:"Santa Casa → Estádio",time:"07:45",price:9.5,distance:"3,8 km",tags:["Rápido","A/C"],routeCoords:null,
    stops:[{label:"Santa Casa",sub:"Saída",lat:-21.2538,lng:-48.3222,color:"#00E5A0"},{label:"Estádio",sub:"Chegada",lat:-21.2650,lng:-48.3160,color:"#FFD166"}]},
-  {id:4,name:"Beatriz Lima",avatar:"BL",rating:4.7,car:"Hyundai HB20 Vermelho",plate:"JAB-4D89",seats:3,
+  {id:4,name:"Beatriz Lima",avatar:"BL",rating:4.7,car:"HB20 Vermelho",plate:"JAB-4D89",seats:3,
    route:"Catedral → Lago Municipal",time:"08:15",price:7.0,distance:"2,6 km",tags:["Silencioso","Flex"],routeCoords:null,
    stops:[{label:"Catedral",sub:"Saída",lat:-21.2543,lng:-48.3196,color:"#00E5A0"},{label:"Lago Municipal",sub:"Chegada",lat:-21.2475,lng:-48.3248,color:"#FFD166"}]},
 ];
 let allDrivers=[...baseDrivers];
 
 const passengers=[
-  {id:1,name:"Ana Beatriz",  avatar:"AB",rating:4.8,from:"UNESP",           to:"Centro",        time:"07:25"},
-  {id:2,name:"Bruno Costa",  avatar:"BC",rating:4.6,from:"Terminal",         to:"Prefeitura",    time:"07:55"},
-  {id:3,name:"Carla Silva",  avatar:"CS",rating:4.9,from:"Santa Casa",       to:"Estádio",       time:"07:40"},
-  {id:4,name:"Diego Martins",avatar:"DM",rating:4.7,from:"Catedral",         to:"Lago Municipal",time:"08:10"},
+  {id:1,name:"Ana Beatriz",  avatar:"AB",rating:4.8,from:"UNESP",      to:"Centro",         time:"07:25"},
+  {id:2,name:"Bruno Costa",  avatar:"BC",rating:4.6,from:"Terminal",    to:"Prefeitura",     time:"07:55"},
+  {id:3,name:"Carla Silva",  avatar:"CS",rating:4.9,from:"Santa Casa",  to:"Estádio",        time:"07:40"},
+  {id:4,name:"Diego Martins",avatar:"DM",rating:4.7,from:"Catedral",    to:"Lago Municipal", time:"08:10"},
 ];
 let selDM=null, selPM=null, matchHist=[];
 
-function renderD(){document.getElementById('dcol').innerHTML=allDrivers.map(d=>`<div class="card ${selDM===d.id?'sd2':''}" onclick="selDrv(${d.id})">${selDM===d.id?`<div class="ck" style="background:var(--ac);color:#fff;">✓</div>`:''}<div class="ch"><div class="av" style="background:linear-gradient(135deg,#00E5A0,#006644)">${d.avatar}</div><div><div class="nm">${d.name}</div><div class="sb2">${d.car}</div></div><div class="rt2">★${d.rating}</div></div><div class="rtx">📍 ${d.route}</div><div class="cf"><div class="tgs">${d.tags.map(t=>`<span class="pill">${t}</span>`).join('')}</div><div class="pr">R$ ${d.price.toFixed(2)}</div></div><div class="cm">🕐 ${d.time} · ${d.seats} vagas · ${d.distance}</div></div>`).join('');}
+function renderD(){
+  document.getElementById('dcol').innerHTML=allDrivers.map(d=>`
+    <div class="card ${selDM===d.id?'sd2':''}" onclick="selDrv(${d.id})">
+      ${selDM===d.id?`<div class="ck" style="background:var(--ac);color:#fff;">✓</div>`:''}
+      <div class="ch"><div class="av" style="background:linear-gradient(135deg,#00E5A0,#006644)">${d.avatar}</div><div><div class="nm">${d.name}</div><div class="sb2">${d.car}</div></div><div class="rt2">★${d.rating}</div></div>
+      <div class="rtx">📍 ${d.route}</div>
+      <div class="cf"><div class="tgs">${d.tags.map(t=>`<span class="pill">${t}</span>`).join('')}</div><div class="pr">R$ ${d.price.toFixed(2)}</div></div>
+      <div class="cm">🕐 ${d.time} · ${d.seats} vagas · ${d.distance}</div>
+    </div>`).join('');
+}
 
-function renderP(){document.getElementById('pcol').innerHTML=passengers.map(p=>`<div class="card ${selPM===p.id?'sp2':''}" onclick="selPas(${p.id})">${selPM===p.id?`<div class="ck" style="background:var(--bl);color:#fff;">✓</div>`:''}<div class="ch"><div class="av" style="background:linear-gradient(135deg,#4B9EFF,#004499)">${p.avatar}</div><div><div class="nm">${p.name}</div><div class="sb2">Verificado · Jaboticabal</div></div><div class="rt2">★${p.rating}</div></div><div class="rtx">📍 ${p.from} → ${p.to}</div><div class="cm">🕐 ${p.time}</div></div>`).join('');}
+function renderP(){
+  document.getElementById('pcol').innerHTML=passengers.map(p=>`
+    <div class="card ${selPM===p.id?'sp2':''}" onclick="selPas(${p.id})">
+      ${selPM===p.id?`<div class="ck" style="background:var(--bl);color:#fff;">✓</div>`:''}
+      <div class="ch"><div class="av" style="background:linear-gradient(135deg,#4B9EFF,#004499)">${p.avatar}</div><div><div class="nm">${p.name}</div><div class="sb2">Verificado · Jaboticabal</div></div><div class="rt2">★${p.rating}</div></div>
+      <div class="rtx">📍 ${p.from} → ${p.to}</div>
+      <div class="cm">🕐 ${p.time}</div>
+    </div>`).join('');
+}
 
 function renderRP(d){
-  const nr=document.getElementById('nrm'),rs=document.getElementById('rstops');
+  const nr=document.getElementById('nrm'), rs=document.getElementById('rstops');
   if(!d){nr.style.display='block';rs.style.display='none';return;}
-  nr.style.display='none';rs.style.display='block';
-  rs.innerHTML=d.stops.map((s,i)=>`<div class="rs"><div style="display:flex;flex-direction:column;align-items:center;"><div class="rsd" style="background:${s.color};width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:3px;"></div>${i<d.stops.length-1?`<div class="rsl"></div>`:''}</div><div><div style="font-size:10px;font-weight:700;color:${s.color};">${s.label}</div><div style="font-size:9px;color:var(--mu);">${s.sub}</div></div></div>`).join('');
+  nr.style.display='none'; rs.style.display='block';
+  rs.innerHTML=d.stops.map((s,i)=>`
+    <div class="rs">
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <div class="rsd" style="background:${s.color};width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:3px;"></div>
+        ${i<d.stops.length-1?`<div class="rsl"></div>`:''}
+      </div>
+      <div><div style="font-size:10px;font-weight:700;color:${s.color};">${s.label}</div><div style="font-size:9px;color:var(--mu);">${s.sub}</div></div>
+    </div>`).join('');
 }
 
 function updCTA(){
@@ -706,8 +741,12 @@ function updCTA(){
   const lbl=document.getElementById('clbl'); lbl.className='cl'+(can?' rdy':'');
   lbl.textContent=can?'✅ Pronto para o match!':'Selecione motorista e passageiro';
   const cn=document.getElementById('cnames');
-  if(can){cn.textContent=allDrivers.find(x=>x.id===selDM).name+' + '+passengers.find(x=>x.id===selPM).name;cn.style.display='block';document.getElementById('mbtn').style.marginTop='0';}
-  else{cn.style.display='none';document.getElementById('mbtn').style.marginTop='7px';}
+  if(can){
+    cn.textContent=allDrivers.find(x=>x.id===selDM).name+' + '+passengers.find(x=>x.id===selPM).name;
+    cn.style.display='block'; document.getElementById('mbtn').style.marginTop='0';
+  } else {
+    cn.style.display='none'; document.getElementById('mbtn').style.marginTop='7px';
+  }
   document.getElementById('mbtn').disabled=!can;
 }
 
@@ -715,19 +754,28 @@ function selDrv(id){selDM=selDM===id?null:id;const d=selDM?allDrivers.find(x=>x.
 function selPas(id){selPM=selPM===id?null:id;renderP();updCTA();}
 
 function searchPas(){
-  const o=document.getElementById('pas-o-inp').value.trim(), d=document.getElementById('pas-d-inp').value.trim();
+  const o=document.getElementById('pas-o-inp').value.trim();
+  const d=document.getElementById('pas-d-inp').value.trim();
   const res=document.getElementById('pas-res');
   if(!o||!d){res.style.display='block';res.innerHTML='<span style="color:var(--rd);">Preencha partida e destino!</span>';return;}
-  const matched=allDrivers.filter(dr=>{const r=dr.route.toLowerCase();return r.includes(o.toLowerCase().split(' ')[0])||r.includes(d.toLowerCase().split(' ')[0]);});
+  const matched=allDrivers.filter(dr=>{
+    const r=dr.route.toLowerCase();
+    return r.includes(o.toLowerCase().split(' ')[0])||r.includes(d.toLowerCase().split(' ')[0]);
+  });
   res.style.display='block';
   res.innerHTML=matched.length
-    ?`<div style="color:var(--ac);font-weight:700;margin-bottom:5px;">✅ ${matched.length} motorista${matched.length>1?'s':''} compatível${matched.length>1?'eis':''}!</div>`+matched.map(dr=>`<div style="background:var(--adim);border:1px solid var(--ac);border-radius:7px;padding:5px 8px;margin-bottom:4px;cursor:pointer;" onclick="selDrv(${dr.id})"><span style="font-weight:700;font-size:10px;">🧑‍✈️ ${dr.name}</span> <span style="background:var(--adim);color:var(--ac);padding:1px 6px;border-radius:20px;font-size:8px;font-weight:700;">Próximo</span><br><span style="font-size:9px;color:var(--mu);">${dr.route} · ${dr.time}</span></div>`).join('')
+    ?`<div style="color:var(--ac);font-weight:700;margin-bottom:5px;">✅ ${matched.length} motorista${matched.length>1?'s':''} compatível${matched.length>1?'eis':''}!</div>`
+      +matched.map(dr=>`<div style="background:var(--adim);border:1px solid var(--ac);border-radius:7px;padding:5px 8px;margin-bottom:4px;cursor:pointer;" onclick="selDrv(${dr.id})">
+        <span style="font-weight:700;font-size:10px;">🧑‍✈️ ${dr.name}</span>
+        <span style="background:var(--adim);color:var(--ac);padding:1px 6px;border-radius:20px;font-size:8px;font-weight:700;margin-left:4px;">Próximo</span><br>
+        <span style="font-size:9px;color:var(--mu);">${dr.route} · ${dr.time}</span>
+      </div>`).join('')
     :`<div style="color:var(--mu);font-size:10px;">Nenhum motorista com rota similar. Tente outras palavras.</div>`;
 }
 
 function doMatch(){
-  if(!selDM||!selPM)return;
-  const d=allDrivers.find(x=>x.id===selDM),p=passengers.find(x=>x.id===selPM);
+  if(!selDM||!selPM) return;
+  const d=allDrivers.find(x=>x.id===selDM), p=passengers.find(x=>x.id===selPM);
   matchHist.unshift({d,p,id:Date.now()});
   document.getElementById('match-count').textContent=matchHist.length;
   document.getElementById('mdav').textContent=d.avatar; document.getElementById('mdnm').textContent=d.name;
@@ -739,8 +787,10 @@ function doMatch(){
   document.getElementById('mseats').textContent=d.seats+' livres'; document.getElementById('mptot').textContent='R$ '+d.price.toFixed(2);
   const sp=(d.price/2).toFixed(2);
   document.getElementById('mtot').textContent='R$ '+d.price.toFixed(2);
-  document.getElementById('mdsl').textContent='🧑‍✈️ '+d.name+' recebe'; document.getElementById('mpsl').textContent='👤 '+p.name+' paga';
-  document.getElementById('ms1v').textContent='R$ '+sp; document.getElementById('ms2v').textContent='R$ '+sp;
+  document.getElementById('mdsl').textContent='🧑‍✈️ '+d.name+' recebe';
+  document.getElementById('mpsl').textContent='👤 '+p.name+' paga';
+  document.getElementById('ms1v').textContent='R$ '+sp;
+  document.getElementById('ms2v').textContent='R$ '+sp;
   document.getElementById('ms1').style.display='block'; document.getElementById('ms2').style.display='none';
   document.getElementById('modal').style.display='flex';
   selDM=null;selPM=null;renderD();renderP();renderRP(null);updateMiniMap(null);updCTA();
@@ -750,10 +800,20 @@ function showS1(){document.getElementById('ms1').style.display='block';document.
 function showS2(){document.getElementById('ms1').style.display='none';document.getElementById('ms2').style.display='block';}
 
 function renderHist(){
-  const list=document.getElementById('hlist'),sub=document.getElementById('hsub');
+  const list=document.getElementById('hlist'), sub=document.getElementById('hsub');
   if(!matchHist.length){sub.textContent='Nenhum match realizado ainda.';list.innerHTML='';return;}
   sub.textContent=matchHist.length+' match'+(matchHist.length>1?'es':'')+' confirmado'+(matchHist.length>1?'s':'');
-  list.innerHTML=matchHist.map((m,i)=>`<div class="hi"><div class="hn">#${i+1}</div><div class="av" style="background:linear-gradient(135deg,#00E5A0,#006644);flex-shrink:0">${m.d.avatar}</div><div class="hif"><div class="him">${m.d.name}</div><div class="his">${m.d.route} · Jaboticabal</div></div><span style="font-size:12px;color:var(--br);">⟷</span><div class="av" style="background:linear-gradient(135deg,#4B9EFF,#004499);flex-shrink:0">${m.p.avatar}</div><div class="hif"><div class="him">${m.p.name}</div><div class="his">${m.p.from} → ${m.p.to}</div></div><div><div class="hpv">R$ ${(m.d.price/2).toFixed(2)}</div><div class="hps">cada</div></div><span class="conf">✓ Confirmado</span></div>`).join('');
+  list.innerHTML=matchHist.map((m,i)=>`
+    <div class="hi">
+      <div class="hn">#${i+1}</div>
+      <div class="av" style="background:linear-gradient(135deg,#00E5A0,#006644);flex-shrink:0">${m.d.avatar}</div>
+      <div class="hif"><div class="him">${m.d.name}</div><div class="his">${m.d.route} · Jaboticabal</div></div>
+      <span style="font-size:12px;color:var(--br);">⟷</span>
+      <div class="av" style="background:linear-gradient(135deg,#4B9EFF,#004499);flex-shrink:0">${m.p.avatar}</div>
+      <div class="hif"><div class="him">${m.p.name}</div><div class="his">${m.p.from} → ${m.p.to}</div></div>
+      <div><div class="hpv">R$ ${(m.d.price/2).toFixed(2)}</div><div class="hps">cada</div></div>
+      <span class="conf">✓ Confirmado</span>
+    </div>`).join('');
 }
 
 function switchTab(t){
@@ -771,7 +831,6 @@ window.addEventListener('load',()=>{
   document.getElementById('tab-home').style.display='block';
   initMap();
   renderD(); renderP();
-  loadPresets();
 });
 </script>
 </body>
