@@ -683,11 +683,11 @@ Capture <strong>3 fotos</strong> em ângulos levemente diferentes (de frente, vi
 <!-- ══ MODAL: PLANEJAR FALTA + REPOSIÇÃO ══ -->
 <div class="modal-overlay" id="plan-modal">
 <div class="modal">
-<div class="modal-header"><div class="modal-title">Avisar falta e agendar reposição</div>
+<div class="modal-header"><div class="modal-title" id="plan-modal-title">Agendar reposição</div>
 <button class="modal-close" onclick="closePlanModal()">&#10005;</button></div>
 <div class="rep-info-box" id="plan-student-info"></div>
 <div class="field">
-<label>Qual aula ela vai faltar?</label>
+<label>Vincular a uma falta? (opcional)</label>
 <select id="plan-origin"></select>
 <p class="help-text" id="plan-origin-help"></p>
 </div>
@@ -898,7 +898,7 @@ function upcomingClasses(s,weeks){
   return out.sort((a,b)=>a.date.localeCompare(b.date)||a.time.localeCompare(b.time));
 }
 /* a reposição acontece antes da aula que ela vai perder? */
-function isEarly(m){ return m && m.date && m.originDate && m.date < m.originDate; }
+function isEarly(m){ return !!(m && m.date && m.originDate && m.date < m.originDate); }
 function toMin(t){ const p=t.split(':'); return parseInt(p[0])*60+parseInt(p[1]); }
 function nowHHMM(){ return new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}); }
 function fmtDate(d){
@@ -1189,6 +1189,7 @@ function buildCard(s,ses,dw){
 
   const REP_ICO='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>';
   const repBadge=isMk?'<span class="rep-badge">'+REP_ICO+(isEarly(ses.makeup)?'REP. ANTECIPADA':'REPOSIÇÃO')+'</span>':'';
+  const mkAvulsa=isMk&&!ses.makeup.originDate;
 
   let days='';
   if(!isMk) days='<div class="days-chips">'+(ses.slot.days||[]).map(d=>'<span class="day-chip '+(d===dw?'today-chip':'active-day')+'">'+DAY_NAMES[d]+'</span>').join('')+'</div>';
@@ -1197,8 +1198,11 @@ function buildCard(s,ses,dw){
   if(isMk){
     const m=ses.makeup;
     const adv=isEarly(m)?' <strong>(antecipada)</strong>':'';
-    origin='<div class="rep-origin">Repõe a aula de '+fmtShort(m.originDate)+' às '+m.originTime+adv
-      +(m.note?' · '+esc(m.note):'')+'</div>';
+    const base=m.originDate
+      ?'Repõe a aula de '+fmtShort(m.originDate)+' às '+m.originTime+adv
+      :'Reposição avulsa';
+    origin='<div class="rep-origin">'+base+(m.note?' · '+esc(m.note):'')
+      +' <button class="rep-act" onclick="openMakeupEdit(\''+m.id+'\')">alterar</button></div>';
   }
 
   let others='';
@@ -1324,7 +1328,7 @@ function renderStudents(){
       })()
       +'<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">'
       +'<button class="btn btn-secondary btn-sm" onclick="openStudentModal('+s.id+')">Editar</button>'
-      +'<button class="btn-schedule-rep" style="width:auto;padding:6px 12px;" onclick="openPlanModal('+s.id+')">Avisar falta / repor</button>'
+      +'<button class="btn-schedule-rep" style="width:auto;padding:6px 12px;" onclick="openPlanModal('+s.id+')">+ Reposição</button>'
       +'</div>';
     grid.appendChild(c);
   });
@@ -1439,28 +1443,26 @@ let planCtx=null;
 
 function openPlanModal(sid,presetOrigin){
   const s=db.students.find(x=>x.id===sid); if(!s) return;
-  if(!(s.schedules||[]).length){ showToast('Cadastre um horário para esta aluna primeiro'); return; }
   planCtx={studentId:sid};
 
+  document.getElementById('plan-modal-title').textContent='Agendar reposição';
   document.getElementById('plan-student-info').innerHTML=
-    '<strong>'+esc(s.name)+'</strong><br>Escolha a aula que ela vai perder e quando vai repor. A reposição pode ser <strong>antes ou depois</strong> da aula perdida.';
+    '<strong>'+esc(s.name)+'</strong><br>Escolha o dia e o horário da reposição. Se quiser, vincule a uma falta — a reposição pode ser <strong>antes ou depois</strong> da aula perdida.';
 
+  /* lista de aulas futuras que podem ser vinculadas */
   const list=upcomingClasses(s,8).filter(c=>{
     const a=db.attendance[c.key];
-    return !a || a.status==='absent_warned';   /* esconde aulas já marcadas presente/falta sem aviso */
+    return !a || a.status==='absent_warned';
   });
-
   const sel=document.getElementById('plan-origin');
-  if(!list.length){
-    sel.innerHTML='<option value="">Nenhuma aula disponível nas próximas 8 semanas</option>';
-  } else {
-    sel.innerHTML=list.map(c=>{
+  sel.innerHTML='<option value="">Reposição avulsa — não vincular a nenhuma falta</option>'
+    +list.map(c=>{
       const mk=findMakeupFor(sid,c.date,c.time);
       const tag=mk?' — já tem reposição':(db.attendance[c.key]?' — falta já avisada':'');
-      return '<option value="'+c.date+'|'+c.time+'">'+DAY_FULL[c.dow]+', '+fmtShort(c.date)+' às '+c.time+tag+'</option>';
+      return '<option value="'+c.date+'|'+c.time+'">Faltará: '+DAY_FULL[c.dow]+', '+fmtShort(c.date)+' às '+c.time+tag+'</option>';
     }).join('');
-  }
-  if(presetOrigin) sel.value=presetOrigin;
+  sel.value=presetOrigin||'';
+  sel.disabled=false;
 
   const tsel=document.getElementById('plan-time');
   tsel.innerHTML=TIMES.map(t=>'<option value="'+t+'">'+t+'</option>').join('');
@@ -1481,21 +1483,31 @@ function onPlanOriginChange(){
   const v=document.getElementById('plan-origin').value;
   const help=document.getElementById('plan-origin-help');
   const btnCancel=document.getElementById('btn-plan-cancel');
-  if(!v){ help.textContent=''; btnCancel.style.display='none'; checkPlanFeedback(); return; }
-  const [od,ot]=v.split('|');
+  const di=document.getElementById('plan-date');
+  const ti=document.getElementById('plan-time');
+  const s=db.students.find(x=>x.id===planCtx.studentId);
+
+  if(!v){
+    help.textContent='Reposição avulsa: fica registrada como reposição, sem descontar nenhuma falta.';
+    btnCancel.style.display='none';
+    if(!di.value) di.value=dateKey(new Date(today.getTime()+86400000));
+    if(s&&s.schedules&&s.schedules[0]&&!ti.value) ti.value=s.schedules[0].time;
+    checkPlanFeedback(); return;
+  }
+
+  const parts=v.split('|'), od=parts[0], ot=parts[1];
   const ex=findMakeupFor(planCtx.studentId,od,ot);
   const already=db.attendance[attKey(planCtx.studentId,ot,parseDateStr(od))];
-  help.textContent=already?'Esta falta já está registrada como avisada.':'A falta será registrada como "avisou" ao confirmar.';
+  help.textContent=already
+    ?'Esta falta já está registrada como avisada.'
+    :'A falta de '+fmtShort(od)+' será registrada como "avisou" ao confirmar.';
   if(ex){
-    document.getElementById('plan-date').value=ex.date;
-    document.getElementById('plan-time').value=ex.time;
+    di.value=ex.date; ti.value=ex.time;
     document.getElementById('plan-note').value=ex.note||'';
     btnCancel.style.display='inline-flex';
   } else {
-    /* sugere o dia seguinte ao de hoje, mas nunca antes de hoje */
-    const sug=new Date(today.getTime()+86400000);
-    document.getElementById('plan-date').value=dateKey(sug);
-    document.getElementById('plan-time').value=ot;
+    di.value=dateKey(new Date(today.getTime()+86400000));
+    ti.value=ot;
     document.getElementById('plan-note').value='';
     btnCancel.style.display='none';
   }
@@ -1507,28 +1519,32 @@ function checkPlanFeedback(){
   const v=document.getElementById('plan-origin').value;
   const ds=document.getElementById('plan-date').value;
   const t=document.getElementById('plan-time').value;
-  if(!v||!ds||!t){ box.innerHTML=''; return; }
-  const [od,ot]=v.split('|');
+  if(!ds||!t){ box.innerHTML=''; return; }
+  const parts=v?v.split('|'):[null,null], od=parts[0], ot=parts[1];
   const d=parseDateStr(ds);
-  const ex=findMakeupFor(planCtx.studentId,od,ot);
+  const ex=(od!==null)?findMakeupFor(planCtx.studentId,od,ot):null;
 
   let n=0, dup=false;
   db.students.forEach(st=>{
     sessionsForDay(st,d).forEach(se=>{
       if(se.time!==t) return;
       if(se.type==='mk'&&ex&&se.makeup.id===ex.id) return;
+      if(se.type==='mk'&&planCtx.editingId&&se.makeup.id===planCtx.editingId) return;
       n++;
       if(st.id===planCtx.studentId) dup=true;
     });
   });
 
   let html='';
-  if(ds===od&&t===ot) html+='<div class="rep-pending-banner" style="margin-bottom:8px;">A reposição está no mesmo dia e horário da aula que ela vai faltar.</div>';
+  if(od&&ds===od&&t===ot) html+='<div class="rep-pending-banner" style="margin-bottom:8px;">A reposição está na mesma aula que ela vai faltar.</div>';
   else if(dup) html+='<div class="rep-pending-banner" style="margin-bottom:8px;">Esta aluna já tem outra sessão nesse dia e horário.</div>';
-  const early=ds<od;
-  html+='<div class="rep-info-box" style="margin-bottom:0;">'
-    +(early?'<strong>Reposição antecipada</strong> — ela repõe em '+fmtShort(ds)+' antes de faltar em '+fmtShort(od)+'.<br>'
-           :'<strong>Reposição posterior</strong> — ela falta em '+fmtShort(od)+' e repõe em '+fmtShort(ds)+'.<br>')
+
+  let head;
+  if(!od) head='<strong>Reposição avulsa</strong> — sem vínculo com falta.<br>';
+  else if(ds<od) head='<strong>Reposição antecipada</strong> — repõe em '+fmtShort(ds)+' antes de faltar em '+fmtShort(od)+'.<br>';
+  else head='<strong>Reposição posterior</strong> — falta em '+fmtShort(od)+' e repõe em '+fmtShort(ds)+'.<br>';
+
+  html+='<div class="rep-info-box" style="margin-bottom:0;">'+head
     +DAY_FULL[d.getDay()]+', '+fmtShort(ds)+' às '+t+' — <strong>'+n+'</strong> aluna(s) nessa turma.</div>';
   box.innerHTML=html;
 }
@@ -1539,42 +1555,94 @@ function savePlan(){
   const ds=document.getElementById('plan-date').value;
   const t=document.getElementById('plan-time').value;
   const note=document.getElementById('plan-note').value.trim();
-  if(!v){ showToast('Escolha a aula que ela vai faltar'); return; }
   if(!ds){ showToast('Escolha a data da reposição'); return; }
   if(!t){ showToast('Escolha o horário da reposição'); return; }
-  const [od,ot]=v.split('|');
-  if(ds===od&&t===ot){ showToast('A reposição não pode ser na mesma aula'); return; }
+  const parts=v?v.split('|'):['',''], od=parts[0], ot=parts[1];
+  if(od&&ds===od&&t===ot){ showToast('A reposição não pode ser na mesma aula'); return; }
 
   const sid=planCtx.studentId;
-  /* 1. registra a falta avisada na data de origem (mesmo sendo futura) */
-  const ok=attKey(sid,ot,parseDateStr(od));
-  if(!db.attendance[ok]||db.attendance[ok].status!=='absent_warned'){
-    db.attendance[ok]={status:'absent_warned',arrivalTime:'',auto:false};
+
+  /* editando uma reposição já existente, chamada pelo cartão */
+  if(planCtx.editingId){
+    const m=db.makeups.find(x=>x.id===planCtx.editingId);
+    if(m){
+      const oldK=mkKey(m), att=db.attendance[oldK];
+      m.date=ds; m.time=t; m.note=note;
+      if(att){ delete db.attendance[oldK]; db.attendance[mkKey(m)]=att; }
+      scheduleSave(); closePlanModal(); renderStudents(); renderAttendance();
+      showToast('Reposição atualizada para '+fmtShort(ds)+' às '+t);
+    }
+    return;
   }
-  /* 2. cria ou atualiza a reposição */
-  const ex=findMakeupFor(sid,od,ot);
-  if(ex){
-    const oldK=mkKey(ex), att=db.attendance[oldK];
-    ex.date=ds; ex.time=t; ex.note=note;
-    if(att){ delete db.attendance[oldK]; db.attendance[mkKey(ex)]=att; }
-    showToast('Reposição atualizada para '+fmtShort(ds)+' às '+t);
-  } else {
-    db.makeups.push({
-      id:'m'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),
-      studentId:sid, originDate:od, originTime:ot, date:ds, time:t, note:note
-    });
-    showToast((ds<od?'Reposição antecipada':'Reposição')+' agendada para '+fmtShort(ds)+' às '+t);
+
+  /* com vínculo: registra a falta avisada na origem */
+  if(od){
+    const ok=attKey(sid,ot,parseDateStr(od));
+    if(!db.attendance[ok]||db.attendance[ok].status!=='absent_warned'){
+      db.attendance[ok]={status:'absent_warned',arrivalTime:'',auto:false};
+    }
+    const ex=findMakeupFor(sid,od,ot);
+    if(ex){
+      const oldK=mkKey(ex), att=db.attendance[oldK];
+      ex.date=ds; ex.time=t; ex.note=note;
+      if(att){ delete db.attendance[oldK]; db.attendance[mkKey(ex)]=att; }
+      scheduleSave(); closePlanModal(); renderStudents(); renderAttendance();
+      showToast('Reposição atualizada para '+fmtShort(ds)+' às '+t);
+      return;
+    }
   }
+
+  db.makeups.push({
+    id:'m'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),
+    studentId:sid, originDate:od||'', originTime:ot||'', date:ds, time:t, note:note
+  });
   scheduleSave(); closePlanModal(); renderStudents(); renderAttendance();
+  showToast((od?(ds<od?'Reposição antecipada':'Reposição'):'Reposição avulsa')+' agendada para '+fmtShort(ds)+' às '+t);
+}
+
+/* abre o modal já editando uma reposição existente (pelo cartão dela) */
+function openMakeupEdit(id){
+  const m=(db.makeups||[]).find(x=>x.id===id); if(!m) return;
+  const s=db.students.find(x=>x.id===m.studentId); if(!s) return;
+  planCtx={studentId:m.studentId,editingId:id};
+
+  document.getElementById('plan-modal-title').textContent='Editar reposição';
+  document.getElementById('plan-student-info').innerHTML='<strong>'+esc(s.name)+'</strong><br>'
+    +(m.originDate?'Repõe a aula de '+fmtShort(m.originDate)+' às '+m.originTime+'.':'Reposição avulsa, sem vínculo com falta.');
+
+  const sel=document.getElementById('plan-origin');
+  sel.innerHTML='<option value="'+(m.originDate?m.originDate+'|'+m.originTime:'')+'">'
+    +(m.originDate?'Vinculada à falta de '+fmtShort(m.originDate)+' às '+m.originTime:'Reposição avulsa')+'</option>';
+  sel.disabled=true;
+  document.getElementById('plan-origin-help').textContent='O vínculo não muda ao editar. Para trocar, cancele e crie outra.';
+
+  document.getElementById('plan-time').innerHTML=TIMES.map(t=>'<option value="'+t+'">'+t+'</option>').join('');
+  const di=document.getElementById('plan-date');
+  di.min=dateKey(today);
+  di.value=m.date;
+  document.getElementById('plan-time').value=m.time;
+  document.getElementById('plan-note').value=m.note||'';
+  document.getElementById('btn-plan-cancel').style.display='inline-flex';
+
+  di.onchange=checkPlanFeedback;
+  document.getElementById('plan-time').onchange=checkPlanFeedback;
+  checkPlanFeedback();
+  document.getElementById('plan-modal').classList.add('open');
 }
 
 function cancelPlanFromModal(){
   if(!planCtx) return;
-  const v=document.getElementById('plan-origin').value; if(!v) return;
-  const [od,ot]=v.split('|');
-  const m=findMakeupFor(planCtx.studentId,od,ot); if(!m) return;
+  let m=null;
+  if(planCtx.editingId) m=db.makeups.find(x=>x.id===planCtx.editingId);
+  else {
+    const v=document.getElementById('plan-origin').value; if(!v) return;
+    const parts=v.split('|');
+    m=findMakeupFor(planCtx.studentId,parts[0],parts[1]);
+  }
+  if(!m) return;
   document.getElementById('confirm-title').textContent='Cancelar reposição';
-  document.getElementById('confirm-text').textContent='Remover a reposição de '+fmtShort(m.date)+' às '+m.time+'? A falta avisada de '+fmtShort(od)+' continua registrada.';
+  document.getElementById('confirm-text').textContent='Remover a reposição de '+fmtShort(m.date)+' às '+m.time+'?'
+    +(m.originDate?' A falta avisada de '+fmtShort(m.originDate)+' continua registrada.':'');
   const ok=document.getElementById('confirm-ok-btn');
   ok.className='btn btn-danger';
   ok.onclick=()=>{
